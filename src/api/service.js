@@ -30,4 +30,4 @@ const uploadImage = (file) => {
 //     .catch(errorHandler);
 // };
 
-export default uploadImage
+export default {uploadImage};

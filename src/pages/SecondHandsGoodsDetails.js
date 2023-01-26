@@ -50,7 +50,7 @@ export default function SecondHandsGoodsDetails() {
 
 
             <div>
-                {showUpdateObjectForm ? <EditSecondHandGoods /> : null}
+                {showUpdateObjectForm ? <EditSecondHandGoods getObject={getObject} showUpdateObjectForm={showUpdateObjectForm}/> : null}
                 {showUpdateObjectForm ?
                     <Button onClick={() => setShowUpdateObjectForm(false)}>Hide Form</Button> :
                     <Button onClick={() => setShowUpdateObjectForm(true)}>Edit the Object</Button>}

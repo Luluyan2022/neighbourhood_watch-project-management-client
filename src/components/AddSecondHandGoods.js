@@ -11,7 +11,7 @@ export default function AddSecondHandGoods(props) {
     const [price, setPrice] = useState("");
     const [contact, setContact] = useState("");
     const [category, setCategory] = useState("");
-    const nagigate = useNavigate();
+    const navigate = useNavigate();
 
     const createNewSecondHandObj = (newSecondHandObj) => {
         axios
@@ -52,13 +52,13 @@ export default function AddSecondHandGoods(props) {
         }
 
         createNewSecondHandObj(newSecondHandObj);
-
+        setName("")
         setDescription("")
         setimageUrl("")
         setPrice("")
         setContact("")
         setCategory("")
-        nagigate("/secondHandGoods")
+        navigate("/secondHandGoods")
         props.setShowAddObjectForm(false)
     }
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import service from '../api/service';
 
-export default function EditSecondHandGoods() {
+export default function EditSecondHandGoods(props) {
     const { secondHandGoodId } = useParams();
 
     const [name, setName] = useState("");
@@ -31,7 +31,7 @@ export default function EditSecondHandGoods() {
              })
              .catch((error) => console.log(error));
              // eslint-disable-next-line
-    }, [{secondHandGoodId}])
+    }, [secondHandGoodId])
 
     const handleFileUpload = (e) => {       
      
@@ -57,7 +57,9 @@ export default function EditSecondHandGoods() {
             .put(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/edit/${secondHandGoodId}`, requestBody)
             .then(() => {
                 console.log("updated")
-                navigate(`/secondHandGoods`)
+                props.getObject();
+                navigate(`/secondHandGoods/${secondHandGoodId}`)
+                props.showUpdateObjectForm(false)
             });
     };
     
