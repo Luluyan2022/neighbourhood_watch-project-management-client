@@ -1,84 +1,108 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { Button } from 'react-bootstrap'
-import Form from 'react-bootstrap/Form'
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
-export default function EditSecondHandGoods(props) {
+import { useNavigate, useParams } from "react-router-dom";
+import service from '../api/service';
+
+export default function EditSecondHandGoods() {
     const { secondHandGoodId } = useParams();
+
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const [price, setPrice] = useState("");
     const [contact, setContact] = useState("");
     const [category, setCategory] = useState("");
+
     const navigate = useNavigate();
 
+    //get the original data
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`)
+             .then(res => {
+                const oneObject = res.data;
+                setName(oneObject.name);
+                setDescription(oneObject.description);
+               
+                setPrice(oneObject.price);
+                setContact(oneObject.contact);
+                setCategory(oneObject.category);
+                
+             })
+             .catch((error) => console.log(error));
+             // eslint-disable-next-line
+    }, [{secondHandGoodId}])
 
+    const handleFileUpload = (e) => {       
+     
+        const uploadData = new FormData();    
+       
+        uploadData.append("imageUrl", e.target.files[0]);
+     
+        service
+          .uploadImage(uploadData)
+          .then(response => {         
+            setImageUrl(response.fileUrl);
+          })
+          .catch(err => console.log("Error while uploading the file: ", err));
+      };
+
+   
+    //UPDATE the data
     const handleSubmit = (e) => {
         e.preventDefault();
-        const requestBody = { name, image, price, description, contact, category };
-
+        const requestBody = { name, price, description, contact, category, imageUrl };
+        
         axios
-            .put(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`, requestBody)
+            .put(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/edit/${secondHandGoodId}`, requestBody)
             .then(() => {
+                console.log("updated")
                 navigate(`/secondHandGoods`)
             });
     };
-
+    
 
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
 
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type="string"
-                        placeholder="The name of the object"
+               
+                    <label>Name</label>
+                    <input
+                        type="string"                       
                         name="name"
-                        required={true}
                         value={name}
                         onChange={(event) => { setName(event.target.value) }}
                     />
-                </Form.Group>
+              
 
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        as="textarea"
+              
+                    <label>Description</label>
+                    <textarea
                         rows={4}
-                        name="description"
-                        required={true}
+                        name="description"                       
                         value={description}
                         onChange={(event) => { setDescription(event.target.value) }}
                     />
-                </Form.Group>
-                <Form.Group controlId="formFileMultiple" className="mb-3">
-                    <Form.Label>Pictures</Form.Label>
-                    <Form.Control type="file"
-                        placeholder="please upload pictures"
-                        name="image"
-                        required={true}
-                        value={image}
-                        onChange={(event) => { setImage(event.target.value) }}
-                        multiple
+              
+               
+                    <label>Pictures</label>
+                    <input type="file"                       
+                        name="imageUrl"
+                        onChange={(e) => handleFileUpload(e)}
                     />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control
-                        type="number"
-                        placeholder="The price of the object"
-                        name="price"
-                        required={true}
+                   
+               
+                    <label>Price</label>
+                    <input
+                        type="number"                        
+                        name="price"                        
                         value={price}
                         onChange={(event) => { setPrice(event.target.value) }}
                     />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Select aria-label="Default select example"
-                        required={true}
+               
+               
+                    <select aria-label="Default select example"                       
                         value={category}
                         onChange={(event) => { setCategory(event.target.value) }}>
                         <option>Category:</option>
@@ -89,21 +113,19 @@ export default function EditSecondHandGoods(props) {
                         <option value="Fashion & Beauty">Fashion & Beauty</option>
                         <option value="Family, Child & Baby">Family, Child & Baby</option>
                         <option value="Others">Others</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Contact</Form.Label>
-                    <Form.Control
-                        type="string"
-                        placeholder="Who you can contact with"
-                        name="contact"
-                        required={true}
+                    </select>
+              
+               
+                    <label>Contact</label>
+                    <input
+                        type="string"                       
+                        name="contact"                        
                         value={contact}
                         onChange={(event) => { setContact(event.target.value) }}
                     />
-                </Form.Group>
-                <Button variant="primary" type="submit">Update</Button>
-            </Form>
+              
+                <button type="submit">Update</button>
+            </form>
         </div>
     )
 }

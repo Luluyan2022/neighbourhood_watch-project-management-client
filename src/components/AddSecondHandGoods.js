@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from "react-router-dom";
+import service from '../api/service';
 export default function AddSecondHandGoods(props) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
+    const [imageUrl, setimageUrl] = useState("");
     const [price, setPrice] = useState("");
     const [contact, setContact] = useState("");
     const [category, setCategory] = useState("");
@@ -24,11 +25,26 @@ export default function AddSecondHandGoods(props) {
                 console.log("error in creating the secondHandGood from API", e)
             })
     }
+
+    const handleFileUpload = (e) => {        
+     
+        const uploadData = new FormData();    
+       
+        uploadData.append("imageUrl", e.target.files[0]);
+     
+        service
+          .uploadImage(uploadData)
+          .then(response => {            
+            setimageUrl(response.fileUrl);
+          })
+          .catch(err => console.log("Error while uploading the file: ", err));
+      };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newSecondHandObj = {
             "name": name,
-            "image": image,
+            "imageUrl": imageUrl,
             "price": price,
             "description": description,
             "contact": contact,
@@ -38,11 +54,12 @@ export default function AddSecondHandGoods(props) {
         createNewSecondHandObj(newSecondHandObj);
 
         setDescription("")
-        setImage("")
+        setimageUrl("")
         setPrice("")
         setContact("")
         setCategory("")
         nagigate("/secondHandGoods")
+        props.setShowAddObjectForm(false)
     }
 
 
@@ -77,12 +94,8 @@ export default function AddSecondHandGoods(props) {
                 <Form.Group controlId="formFileMultiple" className="mb-3">
                     <Form.Label>Pictures</Form.Label>
                     <Form.Control type="file"
-                        placeholder="please upload pictures"
-                        name="image"
-                        required={true}
-                        value={image}
-                        onChange={(event) => { setImage(event.target.value) }}
-                        multiple
+                        placeholder="please upload pictures"                       
+                        onChange={(e) => handleFileUpload(e)}                        
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

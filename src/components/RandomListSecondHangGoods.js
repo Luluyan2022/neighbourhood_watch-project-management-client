@@ -20,7 +20,7 @@ export default function RandomListSecondHangGoods() {
             {
                 secondHandGoods.map((good, index) => {
                     return (<Card key={index} style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={good.image} />
+                        <Card.Img variant="top" src={good.imageUrl} />
                         <Card.Body>
                             <Card.Title>{good.name}</Card.Title>
                             <Card.Text>

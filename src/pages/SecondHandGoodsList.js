@@ -23,7 +23,7 @@ export default function SecondHandGoodsLists() {
     return (
         <div>
             <div>
-                {showAddObjectForm ? <AddSecondHandGoods getSGInfoFromAPI={getSecondHandGoodsInfoFromAPI}/> : null}
+                {showAddObjectForm ? <AddSecondHandGoods getSGInfoFromAPI={getSecondHandGoodsInfoFromAPI} setShowAddObjectForm={setShowAddObjectForm}/> : null}
                 {showAddObjectForm ?
                     <Button onClick={() => setShowAddObjectForm(false)}>Hide Form</Button> :
                     <Button onClick={() => setShowAddObjectForm(true)}>Add new Object</Button>}
@@ -34,10 +34,9 @@ export default function SecondHandGoodsLists() {
                 ? "loading..."
                 :
                 secondHandGoods.map((good, index) => {
-                    return (<Card key={index} style={{ width: '18rem' }}>
-                         {good.image.map((image, index)=>{
-                            return  <Card.Img variant="top" key={index} src={image} />
-                         })}
+                    return (
+                        <Card key={index} style={{ width: '18rem' }}>
+                        <img src={good.imageUrl} alt="object"/>
                        
                         <Card.Body>
                             <Card.Title>{good.name}</Card.Title>
