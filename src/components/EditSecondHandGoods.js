@@ -18,7 +18,8 @@ export default function EditSecondHandGoods(props) {
 
     //get the original data
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`)
+        const storedToken = localStorage.getItem("authToken");
+        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
              .then(res => {
                 const oneObject = res.data;
                 setName(oneObject.name);
@@ -52,9 +53,9 @@ export default function EditSecondHandGoods(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const requestBody = { name, price, description, contact, category, imageUrl };
-        
+        const storedToken = localStorage.getItem("authToken");
         axios
-            .put(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/edit/${secondHandGoodId}`, requestBody)
+            .put(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/edit/${secondHandGoodId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(() => {
                 console.log("updated")
                 props.getObject();

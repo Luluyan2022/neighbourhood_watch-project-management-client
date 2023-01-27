@@ -8,7 +8,8 @@ export default function RandomListSecondHangGoods() {
     const [secondHandGoods, setsecondHandGoods] = useState([]);
     const [showedStatus, setShowedStatus] = useState(false);
     const getRandomList = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/random`)
+        const storedToken = localStorage.getItem("authToken");
+        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/random`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then((res) => setsecondHandGoods(res.data))
             .catch((error) => console.log(error));
     }

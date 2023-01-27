@@ -11,7 +11,8 @@ export default function SecondHandsGoodsDetails() {
     const [object, setObject] = useState(null);
     const { secondHandGoodId } = useParams();
     const getObject = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`)
+        const storedToken = localStorage.getItem("authToken");
+        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`, { headers: { Authorization: `Bearer ${storedToken}` }})
         .then((response) => {
           const oneObject = response.data;            
           setObject(oneObject);            
@@ -22,8 +23,9 @@ export default function SecondHandsGoodsDetails() {
     useEffect(() => { getObject() }, []);
    
     const deleteObject = () => {
+        const storedToken = localStorage.getItem("authToken");
         axios
-            .delete(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`)
+            .delete(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(() => {
                 navigate("/secondHandGoods");
             })

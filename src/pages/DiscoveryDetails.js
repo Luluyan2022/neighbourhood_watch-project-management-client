@@ -9,7 +9,8 @@ export default function DiscoveryDetails() {
     const [discovery, setDiscovery] = useState(null);
     const { discoveryId } = useParams();
     const getDiscovery = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`)
+        const storedToken = localStorage.getItem("authToken");
+        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then((response) => {
                 const oneDiscovery = response.data;
                 setDiscovery(oneDiscovery);
@@ -20,8 +21,9 @@ export default function DiscoveryDetails() {
     useEffect(() => { getDiscovery() }, []);
 
     const deleteDiscovery = () => {
+        const storedToken = localStorage.getItem("authToken");
         axios
-            .delete(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`)
+            .delete(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(() => {
                 navigate("/discoveries");
             })

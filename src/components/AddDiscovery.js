@@ -11,8 +11,9 @@ export default function AddDiscovery(props) {
     const navigate = useNavigate();
     
       const createNewThing = (newThing) => {
+        const storedToken = localStorage.getItem('authToken');
         axios
-            .post(`${process.env.REACT_APP_API_URL}/api/discoveries`, newThing)
+            .post(`${process.env.REACT_APP_API_URL}/api/discoveries`, newThing, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(() => {               
                 props.getDiscoveriesFromAPI()
             })

@@ -8,9 +8,10 @@ import AddDiscovery from '../components/AddDiscovery';
 export default function DiscoveriesListPage() {
     const [showAddDiscoveryForm, setShowAddDiscoveryForm] = useState(false);
     const [discoveries, setDiscoveries] = useState([]);
-
+    
     const getDiscoveriesFromAPI = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries`)
+        const storedToken = localStorage.getItem("authToken");
+        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(res => setDiscoveries(res.data))
             .catch((e) => {
                 console.log("error in getting the discoveries from API", e)

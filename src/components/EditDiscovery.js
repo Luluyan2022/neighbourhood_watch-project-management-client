@@ -14,7 +14,8 @@ export default function EditDiscovery(props) {
 
     //get the original data
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`)
+        const storedToken = localStorage.getItem('authToken');
+        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(res => {
                 const oneDiscovery = res.data;
                 setTitle(oneDiscovery.title);
@@ -43,9 +44,9 @@ export default function EditDiscovery(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const requestBody = { title, description, imageUrl };
-
+        const storedToken = localStorage.getItem('authToken');
         axios
-            .put(`${process.env.REACT_APP_API_URL}/api/discoveries/edit/${discoveryId}`, requestBody)
+            .put(`${process.env.REACT_APP_API_URL}/api/discoveries/edit/${discoveryId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(() => {
                 console.log("updated")
                 props.getDiscovery();

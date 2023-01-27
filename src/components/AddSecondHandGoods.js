@@ -14,8 +14,9 @@ export default function AddSecondHandGoods(props) {
     const navigate = useNavigate();
 
     const createNewSecondHandObj = (newSecondHandObj) => {
+        const storedToken = localStorage.getItem('authToken');
         axios
-            .post(`${process.env.REACT_APP_API_URL}/api/secondHandGoods`, newSecondHandObj)
+            .post(`${process.env.REACT_APP_API_URL}/api/secondHandGoods`, newSecondHandObj, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(() => {
                 console.log(newSecondHandObj);
                 props.getSGInfoFromAPI()

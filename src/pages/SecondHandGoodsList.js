@@ -10,7 +10,9 @@ export default function SecondHandGoodsLists() {
     const [showAddObjectForm, setShowAddObjectForm] = useState(false);
     
     const getSecondHandGoodsInfoFromAPI = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods`)
+        const storedToken = localStorage.getItem("authToken");
+
+        axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods`, { headers: { Authorization: `Bearer ${storedToken}` }})
              .then(res => setSecondHandGoods(res.data))
              .catch((e) => {
                 console.log("error in getting the secondHandGoodsInfo from API", e)

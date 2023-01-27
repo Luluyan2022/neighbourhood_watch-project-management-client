@@ -30,4 +30,5 @@ const uploadImage = (file) => {
 //     .catch(errorHandler);
 // };
 
+// eslint-disable-next-line
 export default {uploadImage};
