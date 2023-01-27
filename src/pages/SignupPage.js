@@ -26,8 +26,9 @@ export default function SignupPage() {
      };
 
     return (
-        <div>
-            <h1>Sign Up</h1>
+        <div id="login" className="pt-3 position-relative" style={{width:'100vw', color:'#828484'}}>
+        <div style={{position:'absolute', left:'60%',top:'6em', width:'25%' }}>
+            <h1 className="mb-5">Sign Up</h1>
             <Form onSubmit={handleSignupSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -64,13 +65,14 @@ export default function SignupPage() {
                      />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button className="border-0 my-2" variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <p>Already have account?</p>
-            <Link to={"/login"}>Login</Link>
+            <Link to={"/login"} className="nav-link text-primary">Login</Link>
+        </div>
         </div>
     )
 }

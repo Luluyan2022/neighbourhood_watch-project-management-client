@@ -2,37 +2,38 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App #login{
+  height: 100vh;
+  background-image:url("images/stylish-soft-blue-curve-lines-abstract-background.jpg");
+  background-size: cover;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#navLink{
+  font-weight: bold;
+  color:#828484
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#navLink1{
+  font-weight: bold;
+  color:#828484
 }
 
-.App-link {
-  color: #61dafb;
+#navLink2{
+  font-weight: bold;
+  color:#828484
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#navLink3{
+  font-weight: bold;
+  color:#828484
+}
+
+#navLink4{
+  font-weight: bold;
+  color:#828484
+}
+
+#textBig{
+  font-size: 8em;
+  font-weight: bold;
 }

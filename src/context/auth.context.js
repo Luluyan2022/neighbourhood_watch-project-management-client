@@ -43,9 +43,10 @@ function AuthProviderWrapper(props) {
         removeToken();
         authenticateUser()
     }
-
+    
     useEffect(() => {
         authenticateUser()
+        // eslint-disable-next-line
     }, []);
 
     return (

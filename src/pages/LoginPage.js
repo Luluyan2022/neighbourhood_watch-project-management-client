@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import {AuthContext} from "../context/auth.context"
+
 export default function LoginPage() {
     const [email, setEmail]=useState("");
     const [password, setPassword]=useState("");
@@ -29,8 +30,9 @@ export default function LoginPage() {
             })
     }
     return (
-        <div>
-            <h1>Login</h1>
+        <div id="login" className="pt-5 position-relative" style={{width:'100vw', color:'#828484'}}>
+        <div style={{position:'absolute', left:'60%',top:'6em', width:'25%' }}>
+            <h1 className="mb-5">Login</h1>
             <Form onSubmit={handleLoginSubmit}>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -57,13 +59,14 @@ export default function LoginPage() {
                      />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button className="border-0 my-2" type="submit" style={{backgroundColor:'#64b3f4'}}>
                     Submit
                 </Button>
             </Form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <p>Don't have an account yet</p>
-            <Link to={"/signup"}>Sign Up</Link>
+            <Link to={"/signup"} className="nav-link text-primary">Sign Up</Link>
+            </div>
         </div>
     )
 }
