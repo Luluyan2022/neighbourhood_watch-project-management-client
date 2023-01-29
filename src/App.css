@@ -2,10 +2,30 @@
   text-align: center;
 }
 
+.App #signup{
+  background-image:url("images/BCG.jpg");
+ 
+  
+}
+#signUpCard{
+  background:rgba(239, 245, 250, 0.95);
+ 
+}
 .App #login{
-  height: 100vh;
-  background-image:url("images/stylish-soft-blue-curve-lines-abstract-background.jpg");
+  height: 93vh;
+  background-image:url("images/login.png"); 
   background-size: cover;
+}
+#navButtonLogout{
+  position: absolute;
+  right: 8em;
+  padding-top: 0.1em;
+}
+#userName{
+  padding-top: 0.2em;
+  font-family: cursive;
+  position: absolute;
+  right: 15em;
 }
 
 #navLink{
@@ -36,4 +56,78 @@
 #textBig{
   font-size: 8em;
   font-weight: bold;
+}
+
+#addDisc{
+  padding: 5em 7em 9em;
+  position: absolute;
+  left: 27%;
+  background-color: rgba(239, 245, 250, 0.7);
+  
+}
+
+#discDetaiImage{
+  float:right;
+  margin: 3em 5em;
+  width: 50vw;
+
+}
+
+#discDetaiTxt{
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  margin: 3em 2em 3em 5em;
+  padding: 5em 2em;  
+}
+#discDetaiTxt p{
+  font-size: 1.5em;
+  text-align: left;
+  padding-left: 1em;
+}
+
+#secondHandGoodsD{
+  display: flex;
+  flex-direction: row;
+  
+}
+#secondHandGoodsDbutton{
+  position: absolute;
+  left:10vw;
+  bottom: 9em;
+}
+
+#secondHand{
+  margin-top: 0;
+  background: linear-gradient(to right, #c2e59c, #64b3f4); 
+  width: 100vw;
+  height:92vh
+}
+#sHcardBody{
+  background: linear-gradient(to right,#64b3f4, #c2e59c ); 
+  padding-top: 5em;
+ 
+}
+
+#editButton{
+  position: absolute;
+  left:21vw;
+  bottom: 9em;
+  margin-left: 0.4em;
+}
+
+.discoveries{
+  background: linear-gradient(to right, #6190e8, #a7bfe8); 
+}
+
+#addDiscButton{
+  position: absolute;
+  bottom: 10em;
+  left: 47%;
+  
+}
+#addDiscBg{
+  width: 100vw;
+  background: linear-gradient(to right, #6190e8, #a7bfe8); 
+  height: 92vh;
 }

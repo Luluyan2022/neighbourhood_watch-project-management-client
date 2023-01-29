@@ -1,10 +1,11 @@
 import axios from "axios";
 import EditDiscovery from "../components/EditDiscovery"
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-export default function DiscoveryDetails() {
-    const navigate = useNavigate();
+import DiscoveryDetailsPart from "../components/DiscoveryDetailsPart";
+
+export default function DiscoveryDetails() {   
     const [showUpdateDiscoveryForm, setShowUpdateDiscoveryForm] = useState(false);
     const [discovery, setDiscovery] = useState(null);
     const { discoveryId } = useParams();
@@ -19,43 +20,21 @@ export default function DiscoveryDetails() {
     };
     // eslint-disable-next-line
     useEffect(() => { getDiscovery() }, []);
-
-    const deleteDiscovery = () => {
-        const storedToken = localStorage.getItem("authToken");
-        axios
-            .delete(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then(() => {
-                navigate("/discoveries");
-            })
-            .catch((err) => console.log(err));
-    };
+    
     return (
-        <div>
-            <div>
-                {discovery &&
-                    <div>
-                        {!discovery.imageUrl
-                            ? <img src="https://via.placeholder.com/1150" alt="no pictures here" />
-                            : <img src={discovery.imageUrl} alt="object" />
-                        }<br/>
-                        {discovery.title}<br/>
-
-                        Description:{discovery.description}
-                    </div>
-                }
-            </div>
+        <div>        
 
 
             <div>
-                {showUpdateDiscoveryForm ? <EditDiscovery getDiscovery={getDiscovery} setShowUpdateDiscoveryForm={setShowUpdateDiscoveryForm}/> : null}
+                {showUpdateDiscoveryForm ? <EditDiscovery getDiscovery={getDiscovery} setShowUpdateDiscoveryForm={setShowUpdateDiscoveryForm}/> 
+                 : <DiscoveryDetailsPart discovery={discovery}/>}
                 {showUpdateDiscoveryForm ?
                     <Button onClick={() => setShowUpdateDiscoveryForm(false)}>Hide Form</Button> :
-                    <Button onClick={() => setShowUpdateDiscoveryForm(true)}>Edit the Object</Button>}
+                    <Button className="px-1" onClick={() => setShowUpdateDiscoveryForm(true)} style={{width:'7.5vw'}}>Edit the Object</Button>}
+            </div>           
+            <div>
+                <Link to="/discoveries">Back</Link>
             </div>
-
-
-            <Button onClick={deleteDiscovery}>Delete</Button>
-            <Link to="/discoveries">Back</Link>
         </div>
     )
 }

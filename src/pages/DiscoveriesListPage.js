@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import AddDiscovery from '../components/AddDiscovery';
+import DiscoveriesList from '../components/DiscoveriesList';
 
 export default function DiscoveriesListPage() {
     const [showAddDiscoveryForm, setShowAddDiscoveryForm] = useState(false);
     const [discoveries, setDiscoveries] = useState([]);
-    
+   
     const getDiscoveriesFromAPI = () => {
         const storedToken = localStorage.getItem("authToken");
         axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries`, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -23,32 +22,13 @@ export default function DiscoveriesListPage() {
 
         <div>
             <div>
-                {showAddDiscoveryForm ? <AddDiscovery getDiscoveriesFromAPI={getDiscoveriesFromAPI} setShowAddDiscoveryForm={setShowAddDiscoveryForm} /> : null}
+                {showAddDiscoveryForm ? <AddDiscovery getDiscoveriesFromAPI={getDiscoveriesFromAPI} setShowAddDiscoveryForm={setShowAddDiscoveryForm} /> 
+                : <DiscoveriesList discoveries={discoveries}/>}
                 {showAddDiscoveryForm ?
-                    <Button onClick={() => setShowAddDiscoveryForm(false)}>Hide Form</Button> :
-                    <Button onClick={() => setShowAddDiscoveryForm(true)}>Add new Discovery</Button>}
+                    <Button style={{position:'absolute',bottom:'11.2em',left:'53vw',width:'5em' }} onClick={() =>{setShowAddDiscoveryForm(false)}}>Back</Button> :
+                    <Button id="addDiscButton" onClick={() => {setShowAddDiscoveryForm(true)}}>Add new Discovery</Button>}
             </div>
-
-            {discoveries === null
-                ? "loading..."
-                :
-                discoveries.map((discovery, index) => {
-                    return (
-
-                        <Card key={index} style={{ width: '18rem' }}>
-                            <Link to={`/discoveries/${discovery._id}`}>
-                                <Card.Img variant="top" src={discovery.imageUrl} />
-                            </Link>
-                            <Card.Body>
-                                <Card.Title>{discovery.title}</Card.Title>
-                                <Card.Text>
-                                    discovery.author
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>)
-                })
-            }
-
+           
         </div>
     )
 }

@@ -17,32 +17,34 @@ export default function RandomListSecondHangGoods() {
 
 
     return (
-        <div>
-            {
-                secondHandGoods.map((good, index) => {
-                    return (<Card key={index} style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={good.imageUrl} />
-                        <Card.Body>
-                            <Card.Title>{good.name}</Card.Title>
-                            <Card.Text>
-                                {good.description}
-                            </Card.Text>
-                        </Card.Body>
-                        <ListGroup className="list-group-flush">
-                            <ListGroup.Item>Price: {good.price}</ListGroup.Item>
-                            <ListGroup.Item>Category: {good.category}</ListGroup.Item>
-                        </ListGroup>
-                        <Card.Body>
-                            {showedStatus && <Card.Title>Contact: {good.contact}</Card.Title>}
-                            {showedStatus
-                                ? <Button onClick={() => setShowedStatus(false)}>Back</Button>
-                                : <Button onClick={() => setShowedStatus(true)}>See More</Button>}
+        <div className='mt-5 container'>
+            <div className="row">
+                {
+                    secondHandGoods.map((good, index) => {
+                        return (<Card key={index} className="m-3 col" style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src={good.imageUrl} style={{ height: '15rem' }} className="mt-2"/>
+                            <Card.Body>
+                                <Card.Title>{good.name}</Card.Title>
+                                <Card.Text>
+                                    {good.description}
+                                </Card.Text>
+                            </Card.Body>
+                            <ListGroup className="list-group-flush">
+                                <ListGroup.Item>Price: {good.price}</ListGroup.Item>
+                                <ListGroup.Item>Category: {good.category}</ListGroup.Item>
+                            </ListGroup>
+                            <Card.Body>
+                                {showedStatus && <Card.Title>Contact: {good.contact}</Card.Title>}
+                                {showedStatus
+                                    ? <Button onClick={() => setShowedStatus(false)}>Back</Button>
+                                    : <Button onClick={() => setShowedStatus(true)}>See More</Button>}
 
-                        </Card.Body>
-                    </Card>)
-                })
-            }
-            <Link to="/secondHandGoods">More</Link>
+                            </Card.Body>
+                        </Card>)
+                    })
+                }
+                <Link to="/secondHandGoods">More</Link>
+            </div>
         </div>
 
     )

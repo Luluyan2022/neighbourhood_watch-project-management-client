@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from "react-router-dom";
 import service from '../api/service';
 
@@ -19,7 +20,7 @@ export default function EditDiscovery(props) {
             .then(res => {
                 const oneDiscovery = res.data;
                 setTitle(oneDiscovery.title);
-                setDescription(oneDiscovery.description);              
+                setDescription(oneDiscovery.description);
             })
             .catch((error) => console.log(error));
         // eslint-disable-next-line
@@ -57,29 +58,36 @@ export default function EditDiscovery(props) {
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>Title</label>
-                <input
-                    type="string"
-                    name="title"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value) }
-                /> <br />
-                <label>Description</label>
-                <textarea
-                    rows={4}
-                    name="description"
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value) }
-                /> <br />
-                <label>Pictures</label>
-                <input type="file"
-                    name="imageUrl"
-                    onChange={(e) => handleFileUpload(e)}
-                /> <br />
-                <button type="submit">Update</button>
-            </form>
+        <div className='m-5' id="addDisc" style={{ width: '45vw' }}>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>TITLE</Form.Label>
+                    <Form.Control
+                        type="string"
+                        name="title"
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>DESCRIPTION</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows={4}
+                        name="description"
+                        value={description}
+                        onChange={(event) => setDescription(event.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group controlId="formFileMultiple" className="mb-3">
+                    <Form.Label>PICTURE</Form.Label>
+                    <Form.Control type="file"
+                        name="imageUrl"
+                        onChange={(e) => handleFileUpload(e)}
+                    />
+                </Form.Group>
+                <Button type="submit">Update</Button>
+            </Form>
         </div>
     )
 }

@@ -31,7 +31,7 @@ export default function LoginPage() {
     }
     return (
         <div id="login" className="pt-5 position-relative" style={{width:'100vw', color:'#828484'}}>
-        <div style={{position:'absolute', left:'60%',top:'6em', width:'25%' }}>
+        <div style={{position:'absolute', left:'11%',top:'10em', width:'25%' }}>
             <h1 className="mb-5">Login</h1>
             <Form onSubmit={handleLoginSubmit}>
 
@@ -59,7 +59,7 @@ export default function LoginPage() {
                      />
                 </Form.Group>
 
-                <Button className="border-0 my-2" type="submit" style={{backgroundColor:'#64b3f4'}}>
+                <Button className="border-0 my-2" type="submit" style={{backgroundColor:'#ff7c00'}}>
                     Submit
                 </Button>
             </Form>

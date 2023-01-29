@@ -26,53 +26,53 @@ export default function SignupPage() {
      };
 
     return (
-        <div id="login" className="pt-3 position-relative" style={{width:'100vw', color:'#828484'}}>
-        <div style={{position:'absolute', left:'60%',top:'6em', width:'25%' }}>
-            <h1 className="mb-5">Sign Up</h1>
-            <Form onSubmit={handleSignupSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control 
-                    type="email"
-                    name="email"
-                    value={email} 
-                    placeholder="Enter email"
-                    onChange={handleEmail} />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
+        <div id="signup" className="pt-3" style={{ width: '100vw', height: '93vh', color: '#828484' }}>
+            <div className="p-5" id="signUpCard" style={{ width: '25%',position:'absolute',right:'35em', margin:'5em 8em' }}>
+                <h1 className="mb-5">Sign Up</h1>
+                <Form onSubmit={handleSignupSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            value={email}
+                            placeholder="Enter email"
+                            onChange={handleEmail} />
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                    type="password" 
-                    name="password"
-                    value={password}
-                    placeholder="Password"
-                    onChange={handlePassword}
-                     />
-                </Form.Group>
-                
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control 
-                    type="text" 
-                    name="name"
-                    value={name}
-                    placeholder="Name"
-                    onChange={handleName}
-                     />
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            value={password}
+                            placeholder="Password"
+                            onChange={handlePassword}
+                        />
+                    </Form.Group>
 
-                <Button className="border-0 my-2" variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <p>Already have account?</p>
-            <Link to={"/login"} className="nav-link text-primary">Login</Link>
-        </div>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="name"
+                            value={name}
+                            placeholder="Name"
+                            onChange={handleName}
+                        />
+                    </Form.Group>
+
+                    <Button className="border-0 my-2" variant="primary" type="submit" style={{ backgroundColor: '#90d1ec' }}>
+                        Submit
+                    </Button>
+                </Form>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                <p>Already have account?</p>
+                <Link to={"/login"} className="nav-link text-primary">Login</Link>
+            </div>
         </div>
     )
 }

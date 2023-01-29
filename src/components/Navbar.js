@@ -39,11 +39,11 @@ export default function Navbar() {
                   
 
                     <div className="d-flex flex-row mt-1">
-                        <Nav.Item>
+                        <Nav.Item id="userName" >
                             <span className="mx-3">{user && user.name}</span>
                         </Nav.Item>
                         <Nav.Item>
-                            <Button variant="outline-danger" style={{height:'2em'}} onClick={logOutUser}>Logout</Button>
+                            <Button id="navButtonLogout" variant="outline-danger" style={{height:'2em'}} onClick={logOutUser}>Logout</Button>
                         </Nav.Item>                        
                     </div>
                 </>
