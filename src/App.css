@@ -63,7 +63,7 @@
   position: absolute;
   left: 27%;
   background-color: rgba(239, 245, 250, 0.7);
-  
+  margin: 5em 3em ;
 }
 
 #discDetaiImage{
@@ -89,6 +89,7 @@
 #secondHandGoodsD{
   display: flex;
   flex-direction: row;
+ 
   
 }
 #secondHandGoodsDbutton{
@@ -107,6 +108,7 @@
   background: linear-gradient(to right,#64b3f4, #c2e59c ); 
   padding-top: 5em;
  
+ 
 }
 
 #editButton{
@@ -122,7 +124,7 @@
 
 #addDiscButton{
   position: absolute;
-  bottom: 10em;
+  top: 4em;
   left: 47%;
   
 }

@@ -9,9 +9,9 @@ export default function AddDiscovery(props) {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [imageUrl, setImageUrl] = useState("");    
-    const [authorId,setAuthorId] = useState("")  
-    const {user} = useContext(AuthContext);       
+    const [imageUrl, setImageUrl] = useState(""); 
+    const {user} = useContext(AuthContext);    
+    const [authorId,setAuthorId] = useState(user._id)    
 
 
     const createNewThing = (newThing) => {
@@ -58,6 +58,7 @@ export default function AddDiscovery(props) {
         setDescription("")
         setTitle("")
         setImageUrl("")
+        
         navigate("/discoveries")
         props.setShowAddDiscoveryForm(false)
     }
@@ -103,7 +104,7 @@ export default function AddDiscovery(props) {
                         type="string"                       
                         name="author"                        
                         value={authorId} 
-                        onChange={() => {setAuthorId(user._id)}}                                         
+                        onChange={(event) => {setAuthorId(event.target.value)}}                                         
                     />
                 </Form.Group>
                 

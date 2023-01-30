@@ -24,11 +24,12 @@ export default function SecondHandGoodsLists() {
     return (
         <div>
             <div>
-                {showAddObjectForm ? <AddSecondHandGoods getSGInfoFromAPI={getSecondHandGoodsInfoFromAPI} setShowAddObjectForm={setShowAddObjectForm}/> 
-                 : <SecondHandGoodsListsPart secondHandGoods={secondHandGoods}/>}
-                {showAddObjectForm ?
-                    <Button onClick={() => setShowAddObjectForm(false)}>Back</Button> :
-                    <Button onClick={() => setShowAddObjectForm(true)}>Add new Object</Button>}
+                {showAddObjectForm 
+                  ? <AddSecondHandGoods getSGInfoFromAPI={getSecondHandGoodsInfoFromAPI} setShowAddObjectForm={setShowAddObjectForm}/> 
+                  : <SecondHandGoodsListsPart secondHandGoods={secondHandGoods}/>}
+                {showAddObjectForm 
+                  ? <Button onClick={() => setShowAddObjectForm(false)}>Back</Button> 
+                  : <Button onClick={() => setShowAddObjectForm(true)}>Add new Object</Button>}
             </div>           
 
             

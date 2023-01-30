@@ -1,19 +1,25 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from "react-router-dom";
 import service from '../api/service';
+import { AuthContext } from '../context/auth.context';
 export default function AddSecondHandGoods(props) {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setimageUrl] = useState("");
     const [price, setPrice] = useState("");
     const [contact, setContact] = useState("");
     const [category, setCategory] = useState("");
-    const navigate = useNavigate();
+     
+    const {user} = useContext(AuthContext);  
+    const [authorId,setAuthorId] = useState(user._id)
+    
 
     const createNewSecondHandObj = (newSecondHandObj) => {
+        console.log(newSecondHandObj);
         const storedToken = localStorage.getItem('authToken');
         axios
             .post(`${process.env.REACT_APP_API_URL}/api/secondHandGoods`, newSecondHandObj, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -39,30 +45,33 @@ export default function AddSecondHandGoods(props) {
           })
           .catch(err => console.log("Error while uploading the file: ", err));
       };
-
+      
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault();       
         const newSecondHandObj = {
             "name": name,
             "imageUrl": imageUrl,
             "price": price,
             "description": description,
             "contact": contact,
-            "category": category
+            "category": category,
+            "author": authorId
         }
-
+       
         createNewSecondHandObj(newSecondHandObj);
+
         setName("")
         setDescription("")
         setimageUrl("")
         setPrice("")
         setContact("")
         setCategory("")
+
         navigate("/secondHandGoods")
         props.setShowAddObjectForm(false)
     }
 
-
+    
     return (
         <div>
             <h3>You can here tell us what you wanna sell</h3>
@@ -98,7 +107,7 @@ export default function AddSecondHandGoods(props) {
                         onChange={(e) => handleFileUpload(e)}                        
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                     <Form.Label>Price</Form.Label>
                     <Form.Control
                         type="number"
@@ -109,7 +118,7 @@ export default function AddSecondHandGoods(props) {
                         onChange={(event) => { setPrice(event.target.value) }}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
                     <Form.Select aria-label="Default select example"
                         required={true}
                         value={category}
@@ -124,7 +133,7 @@ export default function AddSecondHandGoods(props) {
                         <option value="Others">Others</option>
                     </Form.Select>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
                     <Form.Label>Contact</Form.Label>
                     <Form.Control
                         type="string"
@@ -133,6 +142,14 @@ export default function AddSecondHandGoods(props) {
                         required={true}
                         value={contact}
                         onChange={(event) => { setContact(event.target.value) }}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput5" hidden>                   
+                    <Form.Control
+                        type="string"                       
+                        name="author"                        
+                        value={authorId}
+                        onChange={(event) => {setAuthorId(event.target.value)}}
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit">Create</Button>

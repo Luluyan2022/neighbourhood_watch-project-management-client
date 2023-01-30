@@ -6,14 +6,14 @@ export default function SecondHandGoodsListsPart(props) {
     return (
         <div>
             <div className='m-3 container'>
-                <div className="row" style={{ width: '75vw' }}>
+                <div className="row" style={{ width: '50vw'}}>
                     {props.secondHandGoods === null
                         ? "loading..."
                         :
                         props.secondHandGoods.map((good, index) => {
                             return (
                                 <Card key={index} className="m-3 col border-0">
-                                    <Card.Img variant="top" src={good.imageUrl} alt="object" className="mt-2" style={{ height: '25vh' }} />
+                                    <Card.Img variant="top" src={good.imageUrl} alt="object" className="mt-2" style={{ }} />
 
                                     <Card.Body>
                                         <Card.Title>{good.name}</Card.Title>
@@ -24,6 +24,7 @@ export default function SecondHandGoodsListsPart(props) {
                                     <ListGroup className="list-group-flush">
                                         <ListGroup.Item>Price: {good.price}</ListGroup.Item>
                                         <ListGroup.Item>Category: {good.category}</ListGroup.Item>
+                                        <ListGroup.Item>Author: {good.author?.name}</ListGroup.Item>
                                     </ListGroup>
                                     <Link to={`/secondHandGoods/${good._id}`}>
                                         <Button>See Details</Button>

@@ -58,7 +58,7 @@ export default function EditDiscovery(props) {
 
 
     return (
-        <div className='m-5' id="addDisc" style={{ width: '45vw' }}>
+        <div id="addDisc" style={{ width: '45vw' }}>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>TITLE</Form.Label>
