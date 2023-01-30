@@ -22,11 +22,15 @@ export default function DiscoveriesListPage() {
 
         <div>
             <div>
-                {showAddDiscoveryForm ? <AddDiscovery getDiscoveriesFromAPI={getDiscoveriesFromAPI} setShowAddDiscoveryForm={setShowAddDiscoveryForm} /> 
-                : <DiscoveriesList discoveries={discoveries}/>}
-                {showAddDiscoveryForm ?
-                    <Button style={{position:'absolute',bottom:'11.2em',left:'53vw',width:'5em' }} onClick={() =>{setShowAddDiscoveryForm(false)}}>Back</Button> :
-                    <Button id="addDiscButton" onClick={() => {setShowAddDiscoveryForm(true)}}>Add new Discovery</Button>}
+                {showAddDiscoveryForm 
+                    ? <AddDiscovery getDiscoveriesFromAPI={getDiscoveriesFromAPI} setShowAddDiscoveryForm={setShowAddDiscoveryForm} /> 
+                    : <DiscoveriesList discoveries={discoveries}/>
+                }
+
+                {showAddDiscoveryForm 
+                    ? <Button style={{position:'absolute',bottom:'11.2em',left:'53vw',width:'5em' }} onClick={() =>{setShowAddDiscoveryForm(false)}}>Back</Button>
+                    : <Button id="addDiscButton" onClick={() => {setShowAddDiscoveryForm(true)}}>Add new Discovery</Button>
+                }
             </div>
            
         </div>
