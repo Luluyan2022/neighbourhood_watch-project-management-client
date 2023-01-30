@@ -1,24 +1,22 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from "react-router-dom";
 import service from '../api/service';
-
+import { AuthContext } from '../context/auth.context';
 export default function AddDiscovery(props) {
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [imageUrl, setImageUrl] = useState("");  
-      
-    // //eslint-disable-next-line
-    // const [showAddDiscoveryForm, setShowAddDiscoveryForm] = useState(false);  
-   
-  
-    const navigate = useNavigate();
-    
+    const [imageUrl, setImageUrl] = useState("");    
+    const [authorId,setAuthorId] = useState("")  
+    const {user} = useContext(AuthContext);       
+
+
     const createNewThing = (newThing) => {
         const storedToken = localStorage.getItem('authToken');
-        //console.log(newThing) 
+        console.log(newThing) 
         axios
             .post(`${process.env.REACT_APP_API_URL}/api/discoveries`, newThing, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(() => {               
@@ -45,13 +43,14 @@ export default function AddDiscovery(props) {
           .catch(err => console.log("Error while uploading the file: ", err));
       };
      
-     
+      
       const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault();       
         const newThing = {
             "title": title,
             "imageUrl": imageUrl,            
-            "description": description                  
+            "description": description,
+            "author":authorId                  
         }
        
         createNewThing(newThing);
@@ -99,9 +98,17 @@ export default function AddDiscovery(props) {
                         onChange={(e) => handleFileUpload(e)}                        
                     />
                 </Form.Group> 
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2" hidden>                    
+                    <Form.Control
+                        type="string"                       
+                        name="author"                        
+                        value={authorId} 
+                        onChange={() => {setAuthorId(user._id)}}                                         
+                    />
+                </Form.Group>
                 
 
-                <Button className='mt-3' style={{position:'absolute',top:'38em',left:'18vw',width:'5em' }} variant="primary" typeButton="submit">Create</Button>
+                <Button className='mt-3' style={{position:'absolute',top:'38em',left:'18vw',width:'5em' }} variant="primary" type="submit">Create</Button>
             </Form>
         </div>
         </div>

@@ -25,7 +25,7 @@ export default function DiscoveriesList(props) {
                                     <Card.Body>
                                         <Card.Title className='text-start'>{discovery.title}</Card.Title>
                                         <Card.Text>
-                                            {discovery.author}
+                                            {discovery.author?.name}
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>)
