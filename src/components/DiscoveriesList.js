@@ -12,7 +12,6 @@ export default function DiscoveriesList(props) {
     //          })
       
 
-
     return (
 
         <div className='discoveries ' style={{ height: '92vh' }}>
