@@ -11,7 +11,6 @@ export default function DiscoveriesList(props) {
     //             return discovery.title?.toLowerCase().includes(searchTerm.toLocaleLowerCase())
     //          })
       
-    console.log(props)
     return (
 
         <div className='discoveries ' style={{ height: '92vh' }}>
