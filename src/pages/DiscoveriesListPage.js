@@ -16,7 +16,10 @@ export default function DiscoveriesListPage() {
                 console.log("error in getting the discoveries from API", e)
             })
     }
-    useEffect(() => getDiscoveriesFromAPI, []);
+    useEffect(() => {
+        console.log('this useEffect is running fine')
+        getDiscoveriesFromAPI()
+    }, []);
 
     return (
 
