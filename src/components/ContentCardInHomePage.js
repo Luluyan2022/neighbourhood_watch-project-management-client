@@ -1,5 +1,5 @@
 import FrontpageImg1 from "../images/community1.png"
-import FrontpageImg2 from "../images/looking for something new.jpeg"
+import FrontpageImg2 from "../images/looking for something new.jpg"
 import FrontpageImg3 from "../images/starting-a-neighborhood-watch-scaled-1.jpg"
 import Carousel from 'react-bootstrap/Carousel';
 export default function ContentCardInHomePage() {
