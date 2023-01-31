@@ -11,8 +11,9 @@ export default function AddDiscovery(props) {
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState(""); 
     const {user} = useContext(AuthContext);    
-    const [authorId,setAuthorId] = useState(user._id)    
-
+    const [authorId,setAuthorId] = useState(user._id)  
+    //to solve create failed:when create sth, the user does not wait the image completly uploaded already click creat 
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
 
     const createNewThing = (newThing) => {
         const storedToken = localStorage.getItem('authToken');
@@ -33,14 +34,19 @@ export default function AddDiscovery(props) {
         const uploadData = new FormData();    
        
         uploadData.append("imageUrl", e.target.files[0]);
+
+        setIsUploadingImage(true);
        
         service
-          .uploadImage(uploadData)
-          .then(response => {      
-                         
-            setImageUrl(response.fileUrl);
-          })
-          .catch(err => console.log("Error while uploading the file: ", err));
+            .uploadImage(uploadData)
+            .then(response => {
+
+                setImageUrl(response.fileUrl);
+            })
+            .catch(err => console.log("Error while uploading the file: ", err))
+            .finally(() => {
+                setIsUploadingImage(false);
+            });
       };
      
       
@@ -108,8 +114,10 @@ export default function AddDiscovery(props) {
                     />
                 </Form.Group>
                 
-
-                <Button className='mt-3' style={{position:'absolute',top:'38em',left:'18vw',width:'5em' }} variant="primary" type="submit">Create</Button>
+                    {isUploadingImage
+                        ? <Button type="submit" disabled>Uploading...</Button>
+                        : <Button className='mt-3' style={{ position: 'absolute', top: '38em', left: '18vw', width: '5em' }} variant="primary" type="submit">Create</Button>
+                    }
             </Form>
         </div>
         </div>

@@ -17,6 +17,7 @@ export default function AddSecondHandGoods(props) {
     const {user} = useContext(AuthContext);  
     const [authorId,setAuthorId] = useState(user._id)
     
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
 
     const createNewSecondHandObj = (newSecondHandObj) => {
         console.log(newSecondHandObj);
@@ -37,14 +38,19 @@ export default function AddSecondHandGoods(props) {
         const uploadData = new FormData();    
        
         uploadData.append("imageUrl", e.target.files[0]);
+
+        setIsUploadingImage(true);
      
         service
-          .uploadImage(uploadData)
-          .then(response => {            
-            setimageUrl(response.fileUrl);
-          })
-          .catch(err => console.log("Error while uploading the file: ", err));
-      };
+            .uploadImage(uploadData)
+            .then(response => {
+                setimageUrl(response.fileUrl);
+            })
+            .catch(err => console.log("Error while uploading the file: ", err))
+            .finally(() => {
+                setIsUploadingImage(false);
+            });
+    };
       
     const handleSubmit = (e) => {
         e.preventDefault();       
@@ -152,7 +158,10 @@ export default function AddSecondHandGoods(props) {
                         onChange={(event) => {setAuthorId(event.target.value)}}
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit">Create</Button>
+                {isUploadingImage
+                    ? <Button type="submit" disabled>Uploading...</Button>
+                    : <Button variant="primary" type="submit">Create</Button>
+                }
             </Form>
         </div>
     )
