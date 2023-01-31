@@ -6,7 +6,7 @@ import DiscoveriesList from '../components/DiscoveriesList';
 
 export default function DiscoveriesListPage() {
     const [showAddDiscoveryForm, setShowAddDiscoveryForm] = useState(false);
-    const [discoveries, setDiscoveries] = useState([]);
+    const [discoveries, setDiscoveries] = useState(null);
    
     const getDiscoveriesFromAPI = () => {
         const storedToken = localStorage.getItem("authToken");
