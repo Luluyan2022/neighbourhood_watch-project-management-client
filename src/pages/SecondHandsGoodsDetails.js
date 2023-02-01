@@ -30,7 +30,7 @@ export default function SecondHandsGoodsDetails() {
             {showUpdateObjectForm ?
                 <button onClick={() => setShowUpdateObjectForm(false)} style={{position:'absolute', top:'8vh',left:'7vw', fontSize:'1.5em',textDecoration: 'none',color:"black", border:'0',background:'#c2e59c'}}>Back<img src={backButton} alt="back" style={{width:'2em'}}/></button> :
                 <Button id="editButton" onClick={() => setShowUpdateObjectForm(true)}>Edit the Object</Button>}
-            {showUpdateObjectForm ? <EditSecondHandGoods getObject={getObject} showUpdateObjectForm={showUpdateObjectForm} />
+            {showUpdateObjectForm ? <EditSecondHandGoods getObject={getObject} setShowUpdateObjectForm={setShowUpdateObjectForm} />
                 : <SecondHandGoodsDetailsPart object={object} />}
         </div>               
     )
