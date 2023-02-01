@@ -17,6 +17,12 @@ export default function SecondHandGoodsListsPart(props) {
     textOverflow: 'ellipsis',    
     whiteSpace: 'nowrap'
    }
+   const seeDetButton = {
+    padding:'0.3em 1em',
+    backgroundColor:'#f0f5fb',
+    border:'none',
+    color:'#828484'   
+   }
   
     return (
         <div>
@@ -50,7 +56,7 @@ export default function SecondHandGoodsListsPart(props) {
                                     </ListGroup>
 
                                     <Link to={`/secondHandGoods/${good._id}`}>
-                                        <Button>See Details</Button>
+                                        <Button style={seeDetButton}>See Details</Button>
                                     </Link>
 
                                 </Card>)

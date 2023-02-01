@@ -31,7 +31,7 @@ export default function SecondHandsGoodsDetails(props) {
         width: '45rem',
         minHeight: '65vh',
         background: 'linear-gradient(to right,#64b3f4, #c2e59c )',
-        paddingTop: '5em'
+        paddingTop: '3em'
     }
     const imgStyle = {
         height: '65vh',
@@ -74,19 +74,22 @@ export default function SecondHandsGoodsDetails(props) {
                             style={divNextStyle}
                         >
                             <div className="card-body text-start p-3 ms-4 mb-5">
-                                <h1 className="card-title">
+                                <h3 className="card-title">
                                     {props.object.name}
-                                </h1>
-                                <h3 className="card-subtitle my-4">
+                                </h3>
+                                <h4 className="card-subtitle my-4">
                                     CATEGORY: {props.object.category}
-                                </h3>
-                                <h3 className="card-subtitle my-4">
+                                </h4>
+                                <h4 className="card-subtitle my-4">
                                     PRICE: {props.object.price}
-                                </h3>
+                                </h4>
                                 <h5 className="card-text text-muted">
                                     DESCRIPTION:{props.object.description}
                                 </h5>
-                                <h5 className="card-text text-muted">
+                                <h5 className="card-subtitle my-4">
+                                    CONTACT:{props.object.contact}
+                                </h5>
+                                <h5 className="card-subtitle my-4">
                                     PUBLISHED BY {props.object.author?.name}
                                 </h5>
                             </div>
