@@ -14,7 +14,7 @@ export default function EditSecondHandGoods(props) {
     const [price, setPrice] = useState("");
     const [contact, setContact] = useState("");
     const [category, setCategory] = useState("");
-
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
     const navigate = useNavigate();
 
     //get the original data
@@ -41,12 +41,17 @@ export default function EditSecondHandGoods(props) {
 
         uploadData.append("imageUrl", e.target.files[0]);
 
+        setIsUploadingImage(true);
+
         service
             .uploadImage(uploadData)
             .then(response => {
                 setImageUrl(response.fileUrl);
             })
-            .catch(err => console.log("Error while uploading the file: ", err));
+            .catch(err => console.log("Error while uploading the file: ", err))
+            .finally ( () => {
+                setIsUploadingImage(false); 
+              });
     };
 
 
@@ -143,7 +148,10 @@ export default function EditSecondHandGoods(props) {
                         onChange={(event) => { setContact(event.target.value) }}
                     />
                 </Form.Group>
-                <button type="submit" style={buttonStyle}>Update</button>
+                {isUploadingImage
+                    ? <button type="submit" disabled>Uploading...</button>
+                    : <button type="submit" style={buttonStyle}>Update</button>
+                }                
             </Form>
         </div>
     )

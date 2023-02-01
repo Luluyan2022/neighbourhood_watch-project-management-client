@@ -1,12 +1,13 @@
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
-
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 export default function SecondHandsGoodsDetails(props) {
     const navigate = useNavigate();
 
     const { secondHandGoodId } = useParams();
-
+    const { user } = useContext(AuthContext)
     const deleteObject = () => {
         const storedToken = localStorage.getItem("authToken");
         axios
@@ -28,7 +29,7 @@ export default function SecondHandsGoodsDetails(props) {
     }
     const divNextStyle = {
         width: '45rem',
-        height: '65vh',
+        minHeight: '65vh',
         background: 'linear-gradient(to right,#64b3f4, #c2e59c )',
         paddingTop: '5em'
     }
@@ -38,13 +39,27 @@ export default function SecondHandsGoodsDetails(props) {
         margin: '3em 5em',
         width: '50vw'
     }
+    const backButtonStyle = {
+        position: 'absolute',
+        left:'70vw',
+        bottom:'0vh'
+    }
+    const deleteButtonStyle = {
+        position:'absolute',
+        left:'54vw',
+        bottom:'0vh',
+        width:'8em'
+    }
 
     return (
         <div>
             <div style={divStyle}>
-                <Button onClick={deleteObject}>Delete Project</Button>
+                {props.object?.author.name === user.name 
+                   && <Button onClick={deleteObject} style={deleteButtonStyle}>
+                          Delete Project
+                    </Button>}
                 <Link to="/secondHandGoods">
-                    <Button className="mx-3">Back</Button>
+                    <Button className="mx-3" style={backButtonStyle}>Back</Button>
                 </Link>
             </div>
 
@@ -58,7 +73,7 @@ export default function SecondHandsGoodsDetails(props) {
                             className="card m-5 border-0"
                             style={divNextStyle}
                         >
-                            <div className="card-body text-start p-5">
+                            <div className="card-body text-start p-3 ms-4 mb-5">
                                 <h1 className="card-title">
                                     {props.object.name}
                                 </h1>

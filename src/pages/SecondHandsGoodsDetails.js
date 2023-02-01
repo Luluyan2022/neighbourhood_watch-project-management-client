@@ -1,15 +1,18 @@
 import axios from "axios";
 import EditSecondHandGoods from "../components/EditSecondHandGoods"
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button } from "react-bootstrap";
 import SecondHandGoodsDetailsPart from "../components/SecondHandGoodsDetailsPart";
-import backButton from "../images/left-arrow0.png"
+import backButton from "../images/left-arrow0.png";
+import { AuthContext } from "../context/auth.context";
+
 export default function SecondHandsGoodsDetails() {
 
     const [showUpdateObjectForm, setShowUpdateObjectForm] = useState(false);
     const [object, setObject] = useState(null);
     const { secondHandGoodId } = useParams();
+    const { user } = useContext(AuthContext)
     const getObject = () => {
         const storedToken = localStorage.getItem("authToken");
         axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -26,11 +29,13 @@ export default function SecondHandsGoodsDetails() {
         marginTop:' 0',
         background: 'linear-gradient(to right, #c2e59c, #64b3f4)', 
         width: '100vw',
-        minHeight:'92vh'
+        minHeight:'92vh',
+        position:'relative'
       }
     const buttonStyle = {
         position: 'absolute',
-        top: '8vh', left: '7vw',
+        top: '8vh', 
+        left: '7vw',
         fontSize: '1.5em',
         textDecoration: 'none',
         color: "black",
@@ -42,7 +47,7 @@ export default function SecondHandsGoodsDetails() {
     }
     const editButtonStyle = {
         position: 'absolute',
-        left: '21vw',
+        right: '21vw',
         bottom: '9em',
         marginLeft: '0.4em'
     }
@@ -62,7 +67,8 @@ export default function SecondHandsGoodsDetails() {
                         style={imgStyle}
                     />
                 </button>
-                : <Button
+                : object?.author.name === user.name
+                    && <Button
                     style={editButtonStyle}
                     onClick={() => setShowUpdateObjectForm(true)}>
                     Edit the Object

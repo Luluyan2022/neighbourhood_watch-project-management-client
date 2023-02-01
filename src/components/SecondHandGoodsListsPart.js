@@ -3,30 +3,42 @@ import { Link } from "react-router-dom";
 
 export default function SecondHandGoodsListsPart(props) {
     
-    const divStyle = { 
-        width: '30vw' 
-    }
-
+   const divStyle = {
+     width:'90vw',     
+     marginLeft:'5em',
+     paddingLeft:'5em'
+   }
+   const imgStyle = {
+     maxHeight:'25vh',
+     minHeight:'20vh'
+   }
+   const textStyle = {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',    
+    whiteSpace: 'nowrap'
+   }
+  
     return (
         <div>
-            <div className='m-3 container'>
+            <div className='m-3 ms-5 ps-5 container'>
                 <div className="row" style={divStyle}>
                     {props.secondHandGoods === null
                         ? "loading..."
                         :
                         props.secondHandGoods.map((good, index) => {
                             return (
-                                <Card key={index} className="m-3 col border-0">
+                                <Card key={index} className="m-2 col-12 col-sm-3 border-0">
                                     <Card.Img
                                         variant="top"
                                         src={good.imageUrl}
                                         alt="object"
                                         className="mt-2"
+                                        style={imgStyle}
                                     />
 
                                     <Card.Body>
                                         <Card.Title>{good.name}</Card.Title>
-                                        <Card.Text>
+                                        <Card.Text style={textStyle}>
                                             {good.description}
                                         </Card.Text>
                                     </Card.Body>

@@ -19,14 +19,21 @@ export default function RandomListSecondHangGoods() {
     useEffect(() => { getRandomList(); }, []);
 
     const cardStyle = {
-        width: '18rem'
+        width: '25rem'
     }
     const cardImgStyle = {
         height: '15rem'
     }
     const divStyle = { 
-        width: '30vw' 
+        width: '90vw',
+        position:'absolute',
+        left:'7em' 
     }
+    const textStyle = {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',    
+        whiteSpace: 'nowrap'
+       }
     
     return (
         <div className='mt-5 container'>
@@ -36,7 +43,7 @@ export default function RandomListSecondHangGoods() {
                         return (
                             <Card
                                 key={index}
-                                className="m-3 col"
+                                className="m-3 col-12 col-sm-3"
                                 style={cardStyle}>
                                 <Card.Img
                                     variant="top"
@@ -46,7 +53,7 @@ export default function RandomListSecondHangGoods() {
 
                                 <Card.Body>
                                     <Card.Title>{good.name}</Card.Title>
-                                    <Card.Text>
+                                    <Card.Text style={textStyle}>
                                         {good.description}
                                     </Card.Text>
                                 </Card.Body>

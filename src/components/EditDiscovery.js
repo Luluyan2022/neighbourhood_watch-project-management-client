@@ -10,7 +10,7 @@ export default function EditDiscovery(props) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
     const navigate = useNavigate();
 
     //get the original data
@@ -32,12 +32,17 @@ export default function EditDiscovery(props) {
 
         uploadData.append("imageUrl", e.target.files[0]);
 
+        setIsUploadingImage(true);
+
         service
             .uploadImage(uploadData)
             .then(response => {
                 setImageUrl(response.fileUrl);
             })
-            .catch(err => console.log("Error while uploading the file: ", err));
+            .catch(err => console.log("Error while uploading the file: ", err))
+            .finally ( () => {
+                setIsUploadingImage(false); 
+              });
     };
 
 
@@ -96,7 +101,11 @@ export default function EditDiscovery(props) {
                         onChange={(e) => handleFileUpload(e)}
                     />
                 </Form.Group>
-                <Button type="submit" style={updateButton}>Update</Button>
+                
+                {isUploadingImage
+                    ? <button type="submit" disabled>Uploading...</button>
+                    : <Button type="submit" style={updateButton}>Update</Button>
+                }
             </Form>
         </div>
     )
