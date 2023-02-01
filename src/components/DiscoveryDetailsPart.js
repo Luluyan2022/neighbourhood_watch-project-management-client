@@ -16,7 +16,7 @@ export default function DiscoveryDetailsPart(props) {
         const storedToken = localStorage.getItem('authToken');
         axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(res => {
-                const prevLikerArr = res.data.likerArr;                
+                const prevLikerArr = res.data.likerArr;
                 setLikerArr(prevLikerArr)
             })
             .catch((error) => console.log("error in getting likerArr", error));
@@ -55,40 +55,98 @@ export default function DiscoveryDetailsPart(props) {
             })
             .catch((err) => console.log(err));
     };
-    
+
+    const imgStyle = {
+        height: '65vh',
+        float: 'right',
+        margin: '3em 5em',
+        width: '50vw'
+    }
+    const divStyle = {
+        position: 'relative',
+        width: '35vw',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '3em 2em 3em 5em',
+        padding: '5em 2em'
+    }
+    const pStyle = {
+        fontSize: '1.5em',
+        textAlign: 'left',
+        paddingLeft: '1em'
+    }
+    const formStyle = {
+        display: 'flex',
+        flexDirection: 'row',
+        position: 'absolute',
+        top: '0vh',
+        left: '27vw'
+    }
+    const buttonImgStyle = {
+        width: '2em'
+    }
     return (
         <div>
             <div>
                 {props.discovery &&
                     <div>
+
                         {!props.discovery.imageUrl
-                            ? <img id="discDetaiImage" src="https://via.placeholder.com/1150" alt="no pictures here" />
-                            : <img id="discDetaiImage" src={props.discovery.imageUrl} alt="object" />
+                            ? <img
+                                style={imgStyle}
+                                src="https://via.placeholder.com/1150"
+                                alt="no pictures here" />
+                            : <img
+                                style={imgStyle}
+                                src={props.discovery.imageUrl}
+                                alt="object" />
                         }
-                        <div id="discDetaiTxt" style={{position:'relative'}}>
+
+                        <div style={divStyle}>
+
                             <div>
                                 <h1 className="m-3 mb-5">{props.discovery.title}</h1>
-                                <h5 className="m-3 mb-5">{props.discovery.author.name}</h5>                                
+                                <h5 className="m-3 mb-5">{props.discovery.author.name}</h5>
                             </div>
+
                             <div>
-                                <p>{props.discovery.description}</p>
+                                <p style={pStyle}>{props.discovery.description}</p>
                             </div>
-                            <form style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '0vh', left: '27vw' }}>
-                                <button className="border-0 me-3" onClick={increaseCounter} ><img src={heartIcon} alt="like" style={{ width: '2em' }} className="m-3 mb-3" /></button>
-                                <h2 className="mt-2">{likerArr.length !== 0 && likerArr?.length}</h2>
+
+                            <form style={formStyle}>
+
+                                <button
+                                    className="border-0 me-3"
+                                    onClick={increaseCounter} >
+                                    <img
+                                        src={heartIcon}
+                                        alt="like"
+                                        style={buttonImgStyle}
+                                        className="m-3 mb-3" />
+                                </button>
+
+                                <h2 className="mt-2">
+                                    {likerArr.length !== 0 && likerArr?.length}
+                                </h2>
+
                             </form>
-                           
+
                         </div>
                     </div>
                 }
             </div>
+
             {props.discovery?.author.name === user.name
                 ? <div className="my-2">
-                    <Button onClick={deleteDiscovery} className="px-5" >Delete</Button>
-                 </div>
+                    <Button
+                        onClick={deleteDiscovery}
+                        className="px-5" >
+                        Delete
+                    </Button>
+                </div>
                 : null
             }
-            
+
         </div>
     )
 }

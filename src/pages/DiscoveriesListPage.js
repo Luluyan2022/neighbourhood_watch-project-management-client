@@ -7,7 +7,7 @@ import DiscoveriesList from '../components/DiscoveriesList';
 export default function DiscoveriesListPage() {
     const [showAddDiscoveryForm, setShowAddDiscoveryForm] = useState(false);
     const [discoveries, setDiscoveries] = useState(null);
-   
+
     const getDiscoveriesFromAPI = () => {
         const storedToken = localStorage.getItem("authToken");
         axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries`, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -19,21 +19,45 @@ export default function DiscoveriesListPage() {
 
     useEffect(() => { getDiscoveriesFromAPI() }, []);
 
+    const backButtonStyle = {
+        position: 'absolute',
+        bottom: '19%',
+        left: '53vw',
+        width: '5em'
+    }
+    const addDiscButtonStyle = {
+        position: 'absolute',
+        top: '4em',
+        left: '47%'
+    }
+
     return (
 
         <div>
             <div>
-                {showAddDiscoveryForm 
-                    ? <AddDiscovery getDiscoveriesFromAPI={getDiscoveriesFromAPI} setShowAddDiscoveryForm={setShowAddDiscoveryForm} /> 
-                    : <DiscoveriesList discoveries={discoveries} setDiscoveries={setDiscoveries}/>
+                {showAddDiscoveryForm
+                    ? <AddDiscovery
+                        getDiscoveriesFromAPI={getDiscoveriesFromAPI}
+                        setShowAddDiscoveryForm={setShowAddDiscoveryForm} />
+                    : <DiscoveriesList
+                        discoveries={discoveries}
+                        setDiscoveries={setDiscoveries} />
                 }
 
-                {showAddDiscoveryForm 
-                    ? <Button style={{position:'absolute',bottom:'19%',left:'53vw',width:'5em' }} onClick={() =>{setShowAddDiscoveryForm(false)}}>Back</Button>
-                    : <Button id="addDiscButton" onClick={() => {setShowAddDiscoveryForm(true)}}>Add new Discovery</Button>
+                {showAddDiscoveryForm
+                    ? <Button
+                        style={backButtonStyle}
+                        onClick={() => { setShowAddDiscoveryForm(false) }}>
+                        Back
+                    </Button>
+                    : <Button
+                        style={addDiscButtonStyle}
+                        onClick={() => { setShowAddDiscoveryForm(true) }}>
+                        Add new Discovery
+                    </Button>
                 }
             </div>
-           
+
         </div>
     )
 }

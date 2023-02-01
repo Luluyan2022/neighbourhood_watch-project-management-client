@@ -13,10 +13,10 @@ export default function AddSecondHandGoods(props) {
     const [price, setPrice] = useState("");
     const [contact, setContact] = useState("");
     const [category, setCategory] = useState("");
-     
-    const {user} = useContext(AuthContext);  
-    const [authorId,setAuthorId] = useState(user._id)
-    
+
+    const { user } = useContext(AuthContext);
+    const [authorId, setAuthorId] = useState(user._id)
+
     const [isUploadingImage, setIsUploadingImage] = useState(false);
 
     const createNewSecondHandObj = (newSecondHandObj) => {
@@ -24,7 +24,7 @@ export default function AddSecondHandGoods(props) {
         const storedToken = localStorage.getItem('authToken');
         axios
             .post(`${process.env.REACT_APP_API_URL}/api/secondHandGoods`, newSecondHandObj, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then(() => {                
+            .then(() => {
                 props.getSGInfoFromAPI()
             })
             .then(() => console.log('Updating...'))
@@ -33,14 +33,14 @@ export default function AddSecondHandGoods(props) {
             })
     }
 
-    const handleFileUpload = (e) => {        
-     
-        const uploadData = new FormData();    
-       
+    const handleFileUpload = (e) => {
+
+        const uploadData = new FormData();
+
         uploadData.append("imageUrl", e.target.files[0]);
 
         setIsUploadingImage(true);
-     
+
         service
             .uploadImage(uploadData)
             .then(response => {
@@ -51,9 +51,9 @@ export default function AddSecondHandGoods(props) {
                 setIsUploadingImage(false);
             });
     };
-      
+
     const handleSubmit = (e) => {
-        e.preventDefault();       
+        e.preventDefault();
         const newSecondHandObj = {
             "name": name,
             "imageUrl": imageUrl,
@@ -63,7 +63,7 @@ export default function AddSecondHandGoods(props) {
             "category": category,
             "author": authorId
         }
-       
+
         createNewSecondHandObj(newSecondHandObj);
 
         setName("")
@@ -77,10 +77,16 @@ export default function AddSecondHandGoods(props) {
         props.setShowAddObjectForm(false)
     }
 
-    
+    const divStyle = {
+        width: '45vw',
+        position: 'absolute',
+        left: '25vw'
+    }
+
     return (
-        <div className="m-5 pt-5" style={{width:'45vw',position:'absolute',left:'25vw'}}>
+        <div className="m-5 pt-5" style={divStyle}>
             <h3>You can here tell us what you wanna sell</h3>
+
             <Form onSubmit={handleSubmit}>
 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -106,13 +112,15 @@ export default function AddSecondHandGoods(props) {
                         onChange={(event) => { setDescription(event.target.value) }}
                     />
                 </Form.Group>
+
                 <Form.Group controlId="formFileMultiple" className="mb-3">
                     <Form.Label>Pictures</Form.Label>
                     <Form.Control type="file"
-                        placeholder="please upload pictures"                       
-                        onChange={(e) => handleFileUpload(e)}                        
+                        placeholder="please upload pictures"
+                        onChange={(e) => handleFileUpload(e)}
                     />
                 </Form.Group>
+
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                     <Form.Label>Price</Form.Label>
                     <Form.Control
@@ -124,11 +132,13 @@ export default function AddSecondHandGoods(props) {
                         onChange={(event) => { setPrice(event.target.value) }}
                     />
                 </Form.Group>
+
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
                     <Form.Select aria-label="Default select example"
                         required={true}
                         value={category}
                         onChange={(event) => { setCategory(event.target.value) }}>
+
                         <option>Category:</option>
                         <option value="Autos">Autos</option>
                         <option value="Bicycles">Bicycles</option>
@@ -137,8 +147,10 @@ export default function AddSecondHandGoods(props) {
                         <option value="Fashion & Beauty">Fashion & Beauty</option>
                         <option value="Family, Child & Baby">Family, Child & Baby</option>
                         <option value="Others">Others</option>
+
                     </Form.Select>
                 </Form.Group>
+
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
                     <Form.Label>Contact</Form.Label>
                     <Form.Control
@@ -150,17 +162,23 @@ export default function AddSecondHandGoods(props) {
                         onChange={(event) => { setContact(event.target.value) }}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput5" hidden>                   
+
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput5" hidden>
                     <Form.Control
-                        type="string"                       
-                        name="author"                        
+                        type="string"
+                        name="author"
                         value={authorId}
-                        onChange={(event) => {setAuthorId(event.target.value)}}
+                        onChange={(event) => { setAuthorId(event.target.value) }}
                     />
                 </Form.Group>
+
                 {isUploadingImage
                     ? <Button type="submit" disabled>Uploading...</Button>
-                    : <Button variant="primary" type="submit">Create</Button>
+                    : <Button
+                        variant="primary"
+                        type="submit">
+                        Create
+                    </Button>
                 }
             </Form>
         </div>

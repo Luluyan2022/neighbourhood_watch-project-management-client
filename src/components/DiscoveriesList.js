@@ -4,16 +4,25 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 
 export default function DiscoveriesList(props) {
-    
+
     // const [searchParams, setSearchParams] = useSearchParams();   
     // const searchTerm = searchParams.get('q');
     // const findDiscoveriesToDisplay = props.discoveries.filter(discovery => {
     //             return discovery.title?.toLowerCase().includes(searchTerm.toLocaleLowerCase())
     //          })
-      
+    const divStyle = {
+        height: '92vh',
+        background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
+    }
+    const cardStyle = {
+        width: '20vw'
+    }
+    const imgStyle = {
+        height: '25vh'
+    }
     return (
 
-        <div className='discoveries ' style={{ height: '92vh' }}>
+        <div style={divStyle}>
             {/* <form>
                 <label> Search </label>
                     <input
@@ -33,17 +42,27 @@ export default function DiscoveriesList(props) {
                         props.discoveries.map((discovery, index) => {
                             return (
 
-                                <Card key={index} className="m-4 col-12 col-sm-3 border-0 " style={{ width: '20vw' }}>
+                                <Card
+                                    key={index}
+                                    className="m-4 col-12 col-sm-3 border-0 "
+                                    style={cardStyle}>
                                     <Link to={`/discoveries/${discovery._id}`}>
-                                        <Card.Img variant="top" src={discovery.imageUrl} className="mt-2" style={{ height: '25vh' }} />
+                                        <Card.Img
+                                            variant="top"
+                                            src={discovery.imageUrl}
+                                            className="mt-2"
+                                            style={imgStyle} />
                                     </Link>
+
                                     <Card.Body>
-                                        <Card.Title className='text-start'>{discovery.title}</Card.Title>
+                                        <Card.Title className='text-start'>
+                                            {discovery.title}
+                                        </Card.Title>
                                         <Card.Text>
                                             {discovery.author?.name}
                                         </Card.Text>
-
                                     </Card.Body>
+
                                 </Card>)
                         })
                     }

@@ -56,9 +56,19 @@ export default function EditDiscovery(props) {
             });
     };
 
-
+    const divStyle = {
+        width: '45vw',
+        padding: '5em 7em 9em',
+        position: 'absolute',
+        left: '27%',
+        backgroundColor: 'rgba(239, 245, 250, 0.7)',
+        margin: '5em 3em'
+    }
+    const updateButton = {
+        marginTop: '1em'
+    }
     return (
-        <div id="addDisc" style={{ width: '45vw' }}>
+        <div style={divStyle}>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>TITLE</Form.Label>
@@ -86,7 +96,7 @@ export default function EditDiscovery(props) {
                         onChange={(e) => handleFileUpload(e)}
                     />
                 </Form.Group>
-                <Button type="submit">Update</Button>
+                <Button type="submit" style={updateButton}>Update</Button>
             </Form>
         </div>
     )
