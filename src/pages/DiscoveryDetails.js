@@ -53,8 +53,8 @@ export default function DiscoveryDetails() {
                    : null 
                  }
                 {showCommentForm 
-                   ? <Button onClick={() => setShowCommentForm(false)} style={{position:'absolute', left:'19vw',top:'30vh',margin:'1em'}}>Back to Discovery</Button> 
-                   : <Link to={`/discoveries/${discovery?._id}/comments`}><img className="px-1" onClick={() => setShowCommentForm(true)} style={{position:'absolute', top:'1vh',left:'17vw',width:'3vw'}} src={commentImage} alt="comment"/></Link>
+                   ? <Button onClick={() => setShowCommentForm(false)} style={{position:'absolute', right:'5vw',top:'6vh',margin:'1em'}}>Back to Discovery</Button> 
+                   : <img className="px-1" onClick={() => setShowCommentForm(true)} style={{position:'absolute', top:'1vh',left:'17vw',width:'3vw'}} src={commentImage} alt="comment"/>
                 }
             </div>     
         </div>

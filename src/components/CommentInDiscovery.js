@@ -1,23 +1,23 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 export default function CommentInDiscovery(props){
-    const [comments, setComments] = useState([]);
+    const [commentsArr, setCommentsArr] = useState([]);
     const [content, setContent] = useState("");
     const { user } = useContext(AuthContext)
     const [authorId,setAuthorId] = useState(user._id) 
-    const [discoverySpecialId,setDiscoverySpecialId] = useState(user._id) 
-    const navigate = useNavigate();   
+    
     const { discoveryId } = useParams();
    
     //get prevComment and display them
     const getCommentArr = () => {
         const storedToken = localStorage.getItem('authToken');
-        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}/comments`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(res => { 
-                setComments(res.data)
+                // console.log("getCommentArr is running")
+                setCommentsArr(res.data.comments)
             })
             .catch((error) => console.log("error in getting commentArr", error));
     }
@@ -26,11 +26,14 @@ export default function CommentInDiscovery(props){
     useEffect(() => { getCommentArr() }, [discoveryId]);
 
     const createNewComment = (newComment) => {
+        //console.log(commentsArr)
+        let newCommentsArr = [...commentsArr, newComment]
+        const requestBody = { comments: newCommentsArr };
         const storedToken = localStorage.getItem('authToken');
         axios
-            .post(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}/comments`, newComment, { headers: { Authorization: `Bearer ${storedToken}` } })
+            .put(`${process.env.REACT_APP_API_URL}/api/discoveries/edit/${discoveryId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then((res) => {
-                console.log("comment is created")
+                //console.log("comment is created")
                 getCommentArr();
             })
             .then(() => console.log('Updating...'))
@@ -41,21 +44,20 @@ export default function CommentInDiscovery(props){
         e.preventDefault();       
         const newComment = { 
             "content":content,
-            "author":authorId,
-            "discovery":discoverySpecialId
+            "author":authorId,            
         };
         createNewComment(newComment);
         
         setContent("")
-        navigate("/discoveries/${discoveryId}/comments")
+       
     }
     
 
     return(
-        <div className="m-5" >
-            <div className="input-group ms-5 ps-5" style={{backgroundColor:'white',border:'1em solid',height:'80vh',width:'40vw',position:'absolute',top:'30'}}>
+        <div className="m-5" style={{backgroundColor:'white',border:'1em solid',minHeight:'80vh',width:'55vw',position:'absolute',top:'0vh',right:'0vw'}}>
+            <div className="input-group ms-5 ps-5" >
                 
-                {comments && comments.map((comment, index) => {
+                {commentsArr && commentsArr.map((comment, index) => {
                     return (
                         <div key={index}>
                         <span className="input-group-text">{comment.author?.name}</span>
@@ -68,23 +70,17 @@ export default function CommentInDiscovery(props){
             </div>
 
             <div>
-                <form onSubmit={handleSubmit} className="input-group m-5 p-5" style={{width:'35vw'}}>
+                <form onSubmit={handleSubmit} className="input-group mx-5 my-2 p-5" style={{width:'50vw'}}>
+                    <label><h4 className="m-3">{user.name}</h4></label>
                     <input
                         className="input-group-text"
                         type="string"
                         name="author"
-                        value={user.name}
+                        value={authorId}
                         onChange={(event) => { setAuthorId(event.target.value) }}
-                        disabled
-                    />
-                    <input
-                        className="input-group-text"
-                        type="string"
-                        name="author"
-                        value={props.discovery_id}
-                        onChange={(event) => { setDiscoverySpecialId(event.target.value) }}
                         hidden
                     />
+                   
                     <textarea
                         className="form-control"
                         aria-label="With textarea"
