@@ -79,7 +79,7 @@ export default function AddSecondHandGoods(props) {
 
     
     return (
-        <div>
+        <div className="m-5 pt-5" style={{width:'45vw',position:'absolute',left:'25vw'}}>
             <h3>You can here tell us what you wanna sell</h3>
             <Form onSubmit={handleSubmit}>
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Form } from 'react-bootstrap';
 
 import { useNavigate, useParams } from "react-router-dom";
 import service from '../api/service';
@@ -60,52 +61,55 @@ export default function EditSecondHandGoods(props) {
                 console.log("updated")
                 props.getObject();
                 navigate(`/secondHandGoods/${secondHandGoodId}`)
-                props.showUpdateObjectForm(false)
+                props.setShowUpdateObjectForm(false)
             });
     };
     
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-
+        <div style={{ width: '45vw',padding: '5em 7em 9em',position: 'absolute', left: '27%', backgroundColor: 'rgba(239, 245, 250, 0.7)',margin: '1em 3em ' }}>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                
-                    <label>Name</label>
-                    <input
+                    <Form.Label>NAME</Form.Label>
+                    <Form.Control
                         type="string"                       
                         name="name"
                         value={name}
                         onChange={(event) => { setName(event.target.value) }}
                     />
-              
+                </Form.Group>
 
               
-                    <label>Description</label>
-                    <textarea
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>DESCRIPTION</Form.Label>
+                    <Form.Control
+                        as="textarea"
                         rows={4}
                         name="description"                       
                         value={description}
                         onChange={(event) => { setDescription(event.target.value) }}
                     />
-              
-               
-                    <label>Pictures</label>
-                    <input type="file"                       
+                </Form.Group>
+                <Form.Group controlId="formFileMultiple" className="mb-3">
+                    <Form.Label>PICTURE</Form.Label>                   
+                    <Form.Control type="file"
                         name="imageUrl"
                         onChange={(e) => handleFileUpload(e)}
                     />
-                   
-               
-                    <label>Price</label>
-                    <input
-                        type="number"                        
-                        name="price"                        
+                </Form.Group>  
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                
+                    <Form.Label>PRICE</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="price"
                         value={price}
                         onChange={(event) => { setPrice(event.target.value) }}
                     />
-               
-               
-                    <select aria-label="Default select example"                       
+                </Form.Group>  
+                
+                <Form.Select aria-label="Default select example"                      
                         value={category}
                         onChange={(event) => { setCategory(event.target.value) }}>
                         <option>Category:</option>
@@ -116,19 +120,19 @@ export default function EditSecondHandGoods(props) {
                         <option value="Fashion & Beauty">Fashion & Beauty</option>
                         <option value="Family, Child & Baby">Family, Child & Baby</option>
                         <option value="Others">Others</option>
-                    </select>
+                </Form.Select>
               
-               
-                    <label>Contact</label>
-                    <input
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+                    <Form.Label>CONTACT</Form.Label>
+                    <Form.Control
                         type="string"                       
                         name="contact"                        
                         value={contact}
                         onChange={(event) => { setContact(event.target.value) }}
                     />
-              
-                <button type="submit">Update</button>
-            </form>
+                </Form.Group>
+                <button type="submit" style={{border:"none",background:'linear-gradient(to left,#64b3f4, #c2e59c )',padding:'0.5em 1em'}}>Update</button>
+            </Form>
         </div>
     )
 }

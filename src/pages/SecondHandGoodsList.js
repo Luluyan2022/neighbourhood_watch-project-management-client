@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import SecondHandGoodsListsPart from "../components/SecondHandGoodsListsPart";
 import AddSecondHandGoods from "../components/AddSecondHandGoods";
-
+import backButton from "../images/left-arrow0.png"
 export default function SecondHandGoodsLists() {
     const [secondHandGoods, setSecondHandGoods] = useState([]);
     const [showAddObjectForm, setShowAddObjectForm] = useState(false);
@@ -17,7 +17,7 @@ export default function SecondHandGoodsLists() {
                 console.log("error in getting the secondHandGoodsInfo from API", e)
             })
     }  
-    useEffect(() =>getSecondHandGoodsInfoFromAPI,[]); 
+    useEffect(() =>getSecondHandGoodsInfoFromAPI(),[]); 
 
     
 
@@ -28,7 +28,7 @@ export default function SecondHandGoodsLists() {
                   ? <AddSecondHandGoods getSGInfoFromAPI={getSecondHandGoodsInfoFromAPI} setShowAddObjectForm={setShowAddObjectForm}/> 
                   : <SecondHandGoodsListsPart secondHandGoods={secondHandGoods}/>}
                 {showAddObjectForm 
-                  ? <Button onClick={() => setShowAddObjectForm(false)}>Back</Button> 
+                  ? <button onClick={() => setShowAddObjectForm(false)} style={{position:'absolute', top:'8vh',left:'7vw', fontSize:'1.5em',textDecoration: 'none',color:"black", border:'0'}}>Back<img src={backButton} alt="back" style={{width:'2em'}}/></button> 
                   : <Button onClick={() => setShowAddObjectForm(true)}>Add new Object</Button>}
             </div>           
 

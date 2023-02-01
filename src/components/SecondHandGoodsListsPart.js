@@ -6,7 +6,7 @@ export default function SecondHandGoodsListsPart(props) {
     return (
         <div>
             <div className='m-3 container'>
-                <div className="row" style={{ width: '50vw'}}>
+                <div className="row" style={{ width: '30vw'}}>
                     {props.secondHandGoods === null
                         ? "loading..."
                         :
@@ -22,7 +22,7 @@ export default function SecondHandGoodsListsPart(props) {
                                         </Card.Text>
                                     </Card.Body>
                                     <ListGroup className="list-group-flush">
-                                        <ListGroup.Item>Price: {good.price}</ListGroup.Item>
+                                        <ListGroup.Item>Price: {good.price} €</ListGroup.Item>
                                         <ListGroup.Item>Category: {good.category}</ListGroup.Item>
                                         <ListGroup.Item>Author: {good.author?.name}</ListGroup.Item>
                                     </ListGroup>
