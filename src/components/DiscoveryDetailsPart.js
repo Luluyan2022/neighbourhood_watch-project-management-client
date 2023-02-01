@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import heartIcon from "../images/heart.png"
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import messageImage from "../images/envelope.png"
+
 export default function DiscoveryDetailsPart(props) {
     const navigate = useNavigate();
     const [likerArr, setLikerArr] = useState([]);
@@ -77,9 +77,7 @@ export default function DiscoveryDetailsPart(props) {
                                 <button className="border-0 me-3" onClick={increaseCounter} ><img src={heartIcon} alt="like" style={{ width: '2em' }} className="m-3 mb-3" /></button>
                                 <h2 className="mt-2">{likerArr.length !== 0 && likerArr?.length}</h2>
                             </form>
-                            {/* <div style={{ position: 'absolute', top: '1.5vh', left: '23vw' }}>
-                                <img src={messageImage} alt="message" style={{ width: '2.5em' }} />
-                            </div>    */}
+                           
                         </div>
                     </div>
                 }
