@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 export default function SecondHandGoodsListsPart(props) {
     
    const divStyle = {
-     width:'90vw',     
-     marginLeft:'5em',
-     paddingLeft:'5em'
+     width:'95vw', 
+     paddingTop:'0.8em'
    }
    const imgStyle = {
      maxHeight:'25vh',
@@ -26,14 +25,14 @@ export default function SecondHandGoodsListsPart(props) {
   
     return (
         <div>
-            <div className='m-3 ms-5 ps-5 container'>
-                <div className="row" style={divStyle}>
+            <div className='ms-5 container'>
+                <div className="row mt-5 ps-5" style={divStyle}>
                     {props.secondHandGoods === null
                         ? "loading..."
                         :
                         props.secondHandGoods.map((good, index) => {
                             return (
-                                <Card key={index} className="m-2 col-12 col-sm-3 border-0">
+                                <Card key={index} className="m-2 ms-4 col-12 col-sm-2 border-0">
                                     <Card.Img
                                         variant="top"
                                         src={good.imageUrl}

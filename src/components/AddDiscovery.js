@@ -12,7 +12,7 @@ export default function AddDiscovery(props) {
     const [imageUrl, setImageUrl] = useState("");
     const { user } = useContext(AuthContext);
     const [authorId, setAuthorId] = useState(user._id)
-    
+
     //to solve create failed:when create sth, 
     //the user does not wait the image completly uploaded 
     //already click creat 
@@ -78,19 +78,14 @@ export default function AddDiscovery(props) {
         minHeight: '92vh'
     }
     const divTwoStyle = {
-        padding: '5em 7em 9em',
+        padding: '5em 7em 7em',
         position: 'absolute',
         left: '27%',
         backgroundColor: 'rgba(239, 245, 250, 0.7)',
         margin: '5em 3em',
         width: '45vw'
     }
-    const buttonStyle = {
-        position: 'absolute',
-        top: '38em',
-        left: '18vw',
-        width: '5em'
-    }
+
     return (
         <div style={divStyle}>
             <div className='m-5' style={divTwoStyle}>
@@ -139,8 +134,7 @@ export default function AddDiscovery(props) {
                     {isUploadingImage
                         ? <Button type="submit" disabled>Uploading...</Button>
                         : <Button
-                            className='mt-3'
-                            style={buttonStyle}
+                            className='mt-5'
                             variant="primary"
                             type="submit">
                             Create

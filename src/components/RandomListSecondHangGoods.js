@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Button } from "react-bootstrap";
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -34,7 +33,17 @@ export default function RandomListSecondHangGoods() {
         textOverflow: 'ellipsis',    
         whiteSpace: 'nowrap'
        }
-    
+    const buttonStyle = {
+        border:'none',
+        backgroundColor:'#f0f5fb'
+    }
+    const linkStyle = {
+        fontSize:'1.5em',
+        position:'absolute',
+        left:'30em',
+        bottom:'5em'
+
+    }
     return (
         <div className='mt-5 container'>
             <div className="row" style={divStyle}>
@@ -65,27 +74,27 @@ export default function RandomListSecondHangGoods() {
                                     <ListGroup.Item>
                                         Category: {good.category}
                                     </ListGroup.Item>
-                                </ListGroup>
 
-                                <Card.Body>
+
+
                                     {showedStatus
-                                        && <Card.Title>
+                                        && <ListGroup.Item>
                                             Contact: {good.contact}
-                                        </Card.Title>}
+                                        </ListGroup.Item>}
                                     {showedStatus
-                                        ? <Button onClick={() => setShowedStatus(false)}>
+                                        ? <button onClick={() => setShowedStatus(false)} style={buttonStyle}>
                                             Back
-                                        </Button>
-                                        : <Button onClick={() => setShowedStatus(true)}>
-                                            See More
-                                        </Button>}
-                                </Card.Body>
+                                        </button>
+                                        : <button onClick={() => setShowedStatus(true)} style={buttonStyle}>
+                                            Contact
+                                        </button>}
+                                </ListGroup>
 
                             </Card>)
                     })
                 }
 
-                <Link to="/secondHandGoods">
+                <Link to="/secondHandGoods" style={linkStyle}>
                     More
                 </Link>
 

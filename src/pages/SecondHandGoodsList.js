@@ -21,17 +21,22 @@ export default function SecondHandGoodsLists() {
 
     const buttonStyle = {
         position: 'absolute',
-        top: '8vh',
+        top: '10vh',
         left: '7vw',
         fontSize: '1.5em',
         textDecoration: 'none',
         color: "black",
-        border: '0'
+        border: 'none',
+        background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
     }
     const imgStyle = {
-        width: '2em'
+        width: '1em'
     }
-
+    const addNewObjectButtonStyle = {
+        position: 'absolute',
+        top: '4em',
+        left: '47%'        
+    }
 
     return (
         <div>
@@ -56,6 +61,7 @@ export default function SecondHandGoodsLists() {
                         />
                     </button>
                     : <Button
+                        style={addNewObjectButtonStyle}
                         onClick={() => setShowAddObjectForm(true)}>
                         Add new Object
                     </Button>}
