@@ -108,7 +108,7 @@ export default function MessageToAuthor(props) {
                 })}
             
             </div>
-            {messagesArr.length > 10 && <p style={scrollDown}> scroll down for more messages </p>}
+            {messagesArr?.length > 10 && <p style={scrollDown}> scroll down for more messages </p>}
             <div>
                 <form
                     onSubmit={handleSubmit}
