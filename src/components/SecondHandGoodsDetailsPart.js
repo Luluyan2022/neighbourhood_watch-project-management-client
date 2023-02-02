@@ -81,7 +81,7 @@ export default function SecondHandsGoodsDetails(props) {
                                     CATEGORY: {props.object.category}
                                 </h4>
                                 <h4 className="card-subtitle my-4">
-                                    PRICE: {props.object.price}
+                                    PRICE: {props.object.price} €
                                 </h4>
                                 <h5 className="card-text text-muted">
                                     DESCRIPTION:{props.object.description}

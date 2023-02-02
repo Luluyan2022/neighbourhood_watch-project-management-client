@@ -6,10 +6,12 @@ import { Button } from "react-bootstrap";
 import SecondHandGoodsDetailsPart from "../components/SecondHandGoodsDetailsPart";
 import backButton from "../images/left-arrow0.png";
 import { AuthContext } from "../context/auth.context";
-
+import messageImg from "../images/envelope.png"
+import MessageToAuthor from "../components/MessageToAuthor"
 export default function SecondHandsGoodsDetails() {
 
     const [showUpdateObjectForm, setShowUpdateObjectForm] = useState(false);
+    const [showMessageForm, setShowMessageForm] = useState(false);
     const [object, setObject] = useState(null);
     const { secondHandGoodId } = useParams();
     const { user } = useContext(AuthContext)
@@ -51,10 +53,22 @@ export default function SecondHandsGoodsDetails() {
         bottom: '9em',
         marginLeft: '0.4em'
     }
-
-
+    const buttonThreeStyle = {
+        position: 'absolute',
+        right: '5vw',
+        bottom: '14.5vh',
+        margin: '1em'
+    }
+    const messageImgStyle = {        
+        width: '2vw'
+    }
+    const messageButtonDiv = {
+        position: 'absolute',
+        bottom: '14vh',
+        right: '9vw'
+    }
     return (
-
+<div>
         <div style={divStyle}>
             {showUpdateObjectForm
                 ? <button
@@ -82,6 +96,33 @@ export default function SecondHandsGoodsDetails() {
                 : <SecondHandGoodsDetailsPart
                     object={object}
                 />}
+        </div>
+        <div>
+                {showMessageForm
+                    ? <MessageToAuthor
+                        user={user}
+                        object={object} />
+                    : null
+                }
+                {showMessageForm
+                    ? <Button
+                        onClick={() => setShowMessageForm(false)}
+                        style={buttonThreeStyle}>
+                        Back to Object
+                    </Button>
+                    : <div style={messageButtonDiv}>
+                       <img
+                        className="px-1"
+                        onClick={() => setShowMessageForm(true)}
+                        style={messageImgStyle}
+                        src={messageImg}
+                        alt="message" />
+                        {object?.author.name === user.name
+                         ? <p>See messages</p>
+                         : <p>Contact Author</p>}
+                    </div>
+                }
+            </div>
         </div>
     )
 }
