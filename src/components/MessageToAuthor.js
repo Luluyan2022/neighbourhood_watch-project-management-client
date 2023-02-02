@@ -54,7 +54,7 @@ export default function MessageToAuthor(props) {
         const storedToken = localStorage.getItem('authToken');
         axios.get(`${process.env.REACT_APP_API_URL}/api/secondHandGoods/${secondHandGoodId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(res => {
-                console.log(res.data.messages)
+                console.log(res.data)
                 setMessagesArr(res.data.messages)
             })
             .catch((error) => console.log("error in getting messagesArr", error));
