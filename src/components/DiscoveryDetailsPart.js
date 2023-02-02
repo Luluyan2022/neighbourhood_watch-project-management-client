@@ -5,6 +5,42 @@ import heartIcon from "../images/heart.png"
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 
+const imgStyle = {
+    height: '65vh',
+    float: 'right',
+    margin: '5em 5em',
+    width: '50vw'
+}
+const divStyle = {
+    position: 'relative',
+    width: '35vw',
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '3em 2em 3em 5em',
+    padding: '5em 2em'
+}
+const textBoxStyle = {
+    fontSize: '1.3rem',
+    textAlign: 'justify',
+    overflow: 'hidden',
+    textJustify: 'inter-word' 
+}
+const pStyle = {     
+    paddingLeft: '2rem',
+    height: '26rem',
+    overflowY: 'scroll' 
+}
+const formStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    position: 'absolute',
+    top: '0vh',
+    left: '27vw'
+}
+const buttonImgStyle = {
+    width: '2em'
+}
+
 export default function DiscoveryDetailsPart(props) {
     const navigate = useNavigate();
     const [likerArr, setLikerArr] = useState([]);
@@ -60,8 +96,6 @@ export default function DiscoveryDetailsPart(props) {
         }
     }
 
-
-
     const deleteDiscovery = () => {
         const storedToken = localStorage.getItem("authToken");
         axios
@@ -71,36 +105,7 @@ export default function DiscoveryDetailsPart(props) {
             })
             .catch((err) => console.log(err));
     };
-
-    const imgStyle = {
-        height: '65vh',
-        float: 'right',
-        margin: '3em 5em',
-        width: '50vw'
-    }
-    const divStyle = {
-        position: 'relative',
-        width: '35vw',
-        display: 'flex',
-        flexDirection: 'column',
-        margin: '3em 2em 3em 5em',
-        padding: '5em 2em'
-    }
-    const pStyle = {
-        fontSize: '1.5em',
-        textAlign: 'left',
-        paddingLeft: '1em'
-    }
-    const formStyle = {
-        display: 'flex',
-        flexDirection: 'row',
-        position: 'absolute',
-        top: '0vh',
-        left: '27vw'
-    }
-    const buttonImgStyle = {
-        width: '2em'
-    }
+    
     return (
         <div>
             <div>
@@ -125,8 +130,8 @@ export default function DiscoveryDetailsPart(props) {
                                 <h5 className="m-3 mb-5">{props.discovery.author.name}</h5>
                             </div>
 
-                            <div>
-                                <p style={pStyle}>{props.discovery.description}</p>
+                            <div style={textBoxStyle}>
+                                <p className="remove-scrollbar" style={pStyle}>{props.discovery.description}</p>
                             </div>
 
                             <form style={formStyle}>

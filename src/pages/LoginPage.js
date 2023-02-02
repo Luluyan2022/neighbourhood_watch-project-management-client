@@ -4,6 +4,24 @@ import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context"
 import loginImage from "../images/login.png"
+
+const divStyle = {
+    width: '100vw',
+    color: '#828484',
+    height: '93vh',
+    backgroundImage: 'url(' + loginImage + ')',
+    backgroundSize: 'cover'
+}
+const divTwoStyle = {
+    position: 'absolute',
+    left: '11%',
+    top: '10em',
+    width: '25%'
+}
+const buttonStyle = {
+    backgroundColor: '#ff7c00'
+}
+
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,23 +47,7 @@ export default function LoginPage() {
                 setErrorMessage(errorDescription);
             })
     }
-
-    const divStyle = {
-        width: '100vw',
-        color: '#828484',
-        height: '93vh',
-        backgroundImage: 'url(' + loginImage + ')',
-        backgroundSize: 'cover'
-    }
-    const divTwoStyle = {
-        position: 'absolute',
-        left: '11%',
-        top: '10em',
-        width: '25%'
-    }
-    const buttonStyle = {
-        backgroundColor: '#ff7c00'
-    }
+   
     return (
         <div className="pt-5 position-relative" style={divStyle}>
             <div style={divTwoStyle}>

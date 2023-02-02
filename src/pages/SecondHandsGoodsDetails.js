@@ -8,6 +8,47 @@ import backButton from "../images/left-arrow0.png";
 import { AuthContext } from "../context/auth.context";
 import messageImg from "../images/envelope.png"
 import MessageToAuthor from "../components/MessageToAuthor"
+
+const divStyle = {
+    marginTop:' 0',
+    background: 'linear-gradient(to right, #c2e59c, #64b3f4)', 
+    width: '100vw',
+    minHeight:'92vh',
+    position:'relative'
+  }
+const buttonStyle = {
+    position: 'absolute',
+    top: '8vh', 
+    left: '7vw',
+    fontSize: '1.5em',
+    textDecoration: 'none',
+    color: "black",
+    border: '0',
+    background: '#c2e59c'
+}
+const imgStyle = {
+    width: '2em'
+}
+const editButtonStyle = {
+    position: 'absolute',
+    right: 530,
+    bottom: 123,
+    marginLeft: '0.4em'
+}
+const buttonThreeStyle = {
+    position: 'absolute',
+    right: 68,
+    top: 90,
+    margin: '1em'
+}
+const messageImgStyle = {        
+    width: '2vw'
+}
+const messageButtonDiv = {
+    position: 'absolute',
+    bottom: 100,
+    right: 170
+}
 export default function SecondHandsGoodsDetails() {
 
     const [showUpdateObjectForm, setShowUpdateObjectForm] = useState(false);
@@ -27,49 +68,10 @@ export default function SecondHandsGoodsDetails() {
     // eslint-disable-next-line
     useEffect(() => { getObject() }, []);
     
-    const divStyle = {
-        marginTop:' 0',
-        background: 'linear-gradient(to right, #c2e59c, #64b3f4)', 
-        width: '100vw',
-        minHeight:'92vh',
-        position:'relative'
-      }
-    const buttonStyle = {
-        position: 'absolute',
-        top: '8vh', 
-        left: '7vw',
-        fontSize: '1.5em',
-        textDecoration: 'none',
-        color: "black",
-        border: '0',
-        background: '#c2e59c'
-    }
-    const imgStyle = {
-        width: '2em'
-    }
-    const editButtonStyle = {
-        position: 'absolute',
-        right: '21vw',
-        bottom: '9em',
-        marginLeft: '0.4em'
-    }
-    const buttonThreeStyle = {
-        position: 'absolute',
-        right: '5vw',
-        bottom: '14.5vh',
-        margin: '1em'
-    }
-    const messageImgStyle = {        
-        width: '2vw'
-    }
-    const messageButtonDiv = {
-        position: 'absolute',
-        bottom: '14vh',
-        right: '9vw'
-    }
     return (
 <div>
         <div style={divStyle}>
+            
             {showUpdateObjectForm
                 ? <button
                     onClick={() => setShowUpdateObjectForm(false)}
@@ -97,6 +99,7 @@ export default function SecondHandsGoodsDetails() {
                     object={object}
                 />}
         </div>
+       
         <div>
                 {showMessageForm
                     ? <MessageToAuthor
@@ -110,16 +113,18 @@ export default function SecondHandsGoodsDetails() {
                         style={buttonThreeStyle}>
                         Back to Object
                     </Button>
-                    : <div style={messageButtonDiv}>
-                       <img
-                        className="px-1"
-                        onClick={() => setShowMessageForm(true)}
-                        style={messageImgStyle}
-                        src={messageImg}
-                        alt="message" />
-                        {object?.author.name === user.name
-                         ? <p>See messages</p>
-                         : <p>Contact Author</p>}
+                    : showUpdateObjectForm
+                        ? null
+                        : <div style={messageButtonDiv}>
+                            <img
+                                className="px-1"
+                                onClick={() => setShowMessageForm(true)}
+                                style={messageImgStyle}
+                                src={messageImg}
+                                alt="message" />
+                            {object?.author.name === user.name
+                                ? <p>See messages</p>
+                                : <p>Contact Author</p>}
                     </div>
                 }
             </div>

@@ -3,6 +3,24 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import BCG from "../images/BCG.jpg"
+
+const divStyle = {
+    width: '100vw',
+    height: '93vh',
+    color: '#828484',
+    backgroundImage: 'url(' + BCG + ')'
+}
+const divTwoStyle = {
+    width: '25%',
+    position: 'absolute',
+    right: '35em',
+    margin: '5em 8em',
+    background: 'rgba(239, 245, 250, 0.95)'
+}
+const buttonStyle = {
+    backgroundColor: '#90d1ec'
+}
+
 export default function SignupPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,24 +41,7 @@ export default function SignupPage() {
         axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, requestBody)
             .then(() => navigate("/login"))
             .catch((e) => { setErrorMessage(e.response.data.message) })
-    };
-
-    const divStyle = {
-        width: '100vw',
-        height: '93vh',
-        color: '#828484',
-        backgroundImage: 'url(' + BCG + ')'
-    }
-    const divTwoStyle = {
-        width: '25%',
-        position: 'absolute',
-        right: '35em',
-        margin: '5em 8em',
-        background: 'rgba(239, 245, 250, 0.95)'
-    }
-    const buttonStyle = {
-        backgroundColor: '#90d1ec'
-    }
+    };    
 
     return (
         <div id="signup" className="pt-3" style={divStyle}>

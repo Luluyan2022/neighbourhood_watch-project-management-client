@@ -3,6 +3,40 @@ import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
+const divStyle = {
+    backgroundColor: 'rgba(239, 245, 250, 0.9)',
+    minHeight: '75vh',
+    width: '55vw',
+    position: 'absolute',
+    top: -15,
+    right: -13
+}
+const divInLoopStyle = {
+    width: '30vw',
+    height: '3rem',
+    padding: '1rem',
+    textAlign: 'left',
+    display: 'flex',
+    flexDirection: 'row',
+    margin:'0rem 1rem'
+}
+const formStyle = {
+    width: '50vw',
+    position: 'absolute',
+    bottom: '3vh'
+}
+const pInLoopStyle = {
+    fontSize:'1.2em'
+}
+const commentBox = {
+    height: '30rem',
+    overflow: 'scroll'
+}
+
+const scrollDown = {
+    color: 'rgba(134, 133, 133, 0.74)'   
+}
+
 export default function CommentInDiscovery(props) {
     const [commentsArr, setCommentsArr] = useState([]);
     const [content, setContent] = useState("");
@@ -51,46 +85,25 @@ export default function CommentInDiscovery(props) {
         setContent("")
 
     }
-
-    const divStyle = {
-        background: ' rgba(239, 245, 250, 0.9)',
-        minHeight: '90vh',
-        width: '55vw',
-        position: 'absolute',
-        top: '-5vh',
-        right: '0vw'
-    }
-    const divInLoopStyle = {
-        width: '30vw',
-        height: '3em',
-        padding: '1em',
-        textAlign: 'left',
-        display: 'flex',
-        flexDirection: 'row'
-    }
-    const formStyle = {
-        width: '50vw',
-        position: 'absolute',
-        bottom: '10vh'
-    }
+ 
     return (
         <div className="m-5" style={divStyle}>
-            <div className="input-group ms-5 ps-5" >
+            <div className="input-group ms-5 ps-5 mt-5 pt-3 remove-scrollbar" style={commentBox} >
 
                 {commentsArr && commentsArr.map((comment, index) => {
                     return (
                         <div key={index} style={divInLoopStyle}>
-                            <h5 className="me-5">
-                                {comment.author?.name}
-                            </h5>
-                            <p>{comment.content}</p>
+                            <h4 className="me-3">
+                                {comment.author?.name}:
+                            </h4>
+                            <p style={pInLoopStyle}>{comment.content}</p>
                         </div>
                     )
                 })}
-
             </div>
+            {commentsArr.length > 10 && <p style={scrollDown}> scroll down for more comments </p>}
 
-            <div>
+            <div className="ms-2">
                 <form
                     onSubmit={handleSubmit}
                     className="input-group mx-5 my-2 p-5"
@@ -113,6 +126,7 @@ export default function CommentInDiscovery(props) {
                         aria-label="With textarea"
                         name="content"
                         value={content}
+                        required
                         onChange={(event) => { setContent(event.target.value) }}
                     ></textarea>
                     <button type="submit">Comment</button>

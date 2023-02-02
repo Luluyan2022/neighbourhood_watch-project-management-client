@@ -4,6 +4,26 @@ import { Button } from "react-bootstrap";
 import SecondHandGoodsListsPart from "../components/SecondHandGoodsListsPart";
 import AddSecondHandGoods from "../components/AddSecondHandGoods";
 import backButton from "../images/left-arrow0.png"
+
+const buttonStyle = {
+    position: 'absolute',
+    top: '10vh',
+    left: '7vw',
+    fontSize: '1.5em',
+    textDecoration: 'none',
+    color: "black",
+    border: 'none',
+    background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
+}
+const imgStyle = {
+    width: '1em'
+}
+const addNewObjectButtonStyle = {
+    position: 'absolute',
+    top: '4em',
+    left: '47%'        
+}
+
 export default function SecondHandGoodsLists() {
     const [secondHandGoods, setSecondHandGoods] = useState([]);
     const [showAddObjectForm, setShowAddObjectForm] = useState(false);
@@ -18,25 +38,6 @@ export default function SecondHandGoodsLists() {
             })
     }
     useEffect(() => getSecondHandGoodsInfoFromAPI(), []);
-
-    const buttonStyle = {
-        position: 'absolute',
-        top: '10vh',
-        left: '7vw',
-        fontSize: '1.5em',
-        textDecoration: 'none',
-        color: "black",
-        border: 'none',
-        background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
-    }
-    const imgStyle = {
-        width: '1em'
-    }
-    const addNewObjectButtonStyle = {
-        position: 'absolute',
-        top: '4em',
-        left: '47%'        
-    }
 
     return (
         <div>

@@ -3,6 +3,46 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+
+const divStyle = {
+    position: 'absolute',
+    left: '10vw',
+    bottom: '9em'
+}
+const divInDetailsPart = {
+    display: 'flex',
+    flexDirection: 'row'
+}
+const divNextStyle = {
+    width: '45rem',
+    minHeight: '65vh',
+    background: 'linear-gradient(to right,#64b3f4, #c2e59c )',
+    paddingTop: '3em'
+}
+const imgStyle = {
+    height: '65vh',
+    float: 'right',
+    margin: '5em',
+    width: '50vw',
+    paddingTop:'2em'
+}
+const backButtonStyle = {
+    position: 'absolute',
+    left:950,
+    top:-17
+}
+const deleteButtonStyle = {
+    position:'absolute',
+    left:800,
+    bottom:-20,
+    width:'8em'
+}
+const descriptionStyle = {
+    height: '20rem',
+    overflow: 'scroll',
+    textAlign: 'justify'
+}
+
 export default function SecondHandsGoodsDetails(props) {
     const navigate = useNavigate();
 
@@ -17,39 +57,6 @@ export default function SecondHandsGoodsDetails(props) {
             })
             .catch((err) => console.log(err));
     };
-
-    const divStyle = {
-        position: 'absolute',
-        left: '10vw',
-        bottom: '9em'
-    }
-    const divInDetailsPart = {
-        display: 'flex',
-        flexDirection: 'row'
-    }
-    const divNextStyle = {
-        width: '45rem',
-        minHeight: '65vh',
-        background: 'linear-gradient(to right,#64b3f4, #c2e59c )',
-        paddingTop: '3em'
-    }
-    const imgStyle = {
-        height: '65vh',
-        float: 'right',
-        margin: '3em 5em',
-        width: '50vw'
-    }
-    const backButtonStyle = {
-        position: 'absolute',
-        left:'70vw',
-        bottom:'0vh'
-    }
-    const deleteButtonStyle = {
-        position:'absolute',
-        left:'54vw',
-        bottom:'0vh',
-        width:'8em'
-    }
 
     return (
         <div>
@@ -83,7 +90,7 @@ export default function SecondHandsGoodsDetails(props) {
                                 <h4 className="card-subtitle my-4">
                                     PRICE: {props.object.price} €
                                 </h4>
-                                <h5 className="card-text text-muted">
+                                <h5 className="card-text text-muted remove-scrollbar" style={descriptionStyle}>
                                     DESCRIPTION:{props.object.description}
                                 </h5>
                                 <h5 className="card-subtitle my-4">

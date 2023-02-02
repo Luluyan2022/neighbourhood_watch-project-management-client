@@ -9,6 +9,41 @@ import { AuthContext } from "../context/auth.context";
 import commentImage from "../images/conversation.png";
 import CommentInDiscovery from "../components/CommentInDiscovery"
 
+const divStyle = {
+    position: 'relative'
+}
+const buttonStyle = {
+    position: 'absolute',
+    right: '43vw',
+    margin: '1em'
+}
+const buttonTwoStyle = {
+    width: '7.5vw'
+}
+const linkStyle = {
+    position: 'absolute',
+    top: '1vh',
+    left: '7.5vw',
+    fontSize: '1.5em',
+    textDecoration: 'none',
+    color: "black"
+}
+const imgStyle = {
+    width: '2em'
+}
+const buttonThreeStyle = {
+    position: 'absolute',
+    right: 64,
+    top: -45,
+    margin: '1em'
+}
+const commentImgStyle = {
+    position: 'absolute',
+    top: '1vh',
+    left: '26vw',
+    width: '3vw'
+}
+
 export default function DiscoveryDetails() {
 
     const [showUpdateDiscoveryForm, setShowUpdateDiscoveryForm] = useState(false);
@@ -28,42 +63,8 @@ export default function DiscoveryDetails() {
             .catch((error) => console.log("error getting one discovery from API", error));
     };
     // eslint-disable-next-line
-    useEffect(() => { getDiscovery() }, []);
-
-    const divStyle = {
-        position: 'relative'
-    }
-    const buttonStyle = {
-        position: 'absolute',
-        right: '43vw',
-        margin: '1em'
-    }
-    const buttonTwoStyle = {
-        width: '7.5vw'
-    }
-    const linkStyle = {
-        position: 'absolute',
-        top: '1vh',
-        left: '7.5vw',
-        fontSize: '1.5em',
-        textDecoration: 'none',
-        color: "black"
-    }
-    const imgStyle = {
-        width: '2em'
-    }
-    const buttonThreeStyle = {
-        position: 'absolute',
-        right: '5vw',
-        top: '-1vh',
-        margin: '1em'
-    }
-    const commentImgStyle = {
-        position: 'absolute',
-        top: '1vh',
-        left: '17vw',
-        width: '3vw'
-    }
+    useEffect(() => { getDiscovery() }, []);    
+   
     return (
         <div style={divStyle}>
             <div>
