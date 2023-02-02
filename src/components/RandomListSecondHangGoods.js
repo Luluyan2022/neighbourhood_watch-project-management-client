@@ -4,6 +4,33 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 
+const cardStyle = {
+    width: '25rem'
+}
+const cardImgStyle = {
+    height: '15rem'
+}
+const divStyle = { 
+    width: '90vw',
+    position:'absolute',
+    left:'7em' 
+}
+const textStyle = {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',    
+    whiteSpace: 'nowrap'
+   }
+const buttonStyle = {
+    border:'none',
+    backgroundColor:'#f0f5fb'
+}
+const linkStyle = {
+    fontSize:'1.5em',
+    position:'absolute',
+    left:'30em',
+    bottom:'5em'
+}
+
 export default function RandomListSecondHangGoods() {
 
     const [secondHandGoods, setsecondHandGoods] = useState([]);
@@ -16,34 +43,7 @@ export default function RandomListSecondHangGoods() {
             .catch((error) => console.log(error));
     }
     useEffect(() => { getRandomList(); }, []);
-
-    const cardStyle = {
-        width: '25rem'
-    }
-    const cardImgStyle = {
-        height: '15rem'
-    }
-    const divStyle = { 
-        width: '90vw',
-        position:'absolute',
-        left:'7em' 
-    }
-    const textStyle = {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',    
-        whiteSpace: 'nowrap'
-       }
-    const buttonStyle = {
-        border:'none',
-        backgroundColor:'#f0f5fb'
-    }
-    const linkStyle = {
-        fontSize:'1.5em',
-        position:'absolute',
-        left:'30em',
-        bottom:'5em'
-
-    }
+    
     return (
         <div className='mt-5 container'>
             <div className="row" style={divStyle}>
@@ -74,8 +74,6 @@ export default function RandomListSecondHangGoods() {
                                     <ListGroup.Item>
                                         Category: {good.category}
                                     </ListGroup.Item>
-
-
 
                                     {showedStatus
                                         && <ListGroup.Item>

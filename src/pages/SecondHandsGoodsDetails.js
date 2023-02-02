@@ -31,8 +31,8 @@ const imgStyle = {
 }
 const editButtonStyle = {
     position: 'absolute',
-    right: 530,
-    bottom: 123,
+    right: 570,
+    bottom: 115,
     marginLeft: '0.4em'
 }
 const buttonThreeStyle = {
@@ -46,8 +46,8 @@ const messageImgStyle = {
 }
 const messageButtonDiv = {
     position: 'absolute',
-    bottom: 100,
-    right: 170
+    bottom: 90,
+    left: 150
 }
 export default function SecondHandsGoodsDetails() {
 

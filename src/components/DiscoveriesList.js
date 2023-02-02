@@ -1,38 +1,24 @@
 
 import Card from 'react-bootstrap/Card';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+const divStyle = {
+    height: '92vh',
+    background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
+}
+const cardStyle = {
+    width: '20vw'
+}
+const imgStyle = {
+    height: '25vh'
+}
 
 export default function DiscoveriesList(props) {
 
-    // const [searchParams, setSearchParams] = useSearchParams();   
-    // const searchTerm = searchParams.get('q');
-    // const findDiscoveriesToDisplay = props.discoveries.filter(discovery => {
-    //             return discovery.title?.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-    //          })
-    const divStyle = {
-        height: '92vh',
-        background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
-    }
-    const cardStyle = {
-        width: '20vw'
-    }
-    const imgStyle = {
-        height: '25vh'
-    }
+
     return (
 
         <div style={divStyle}>
-            {/* <form>
-                <label> Search </label>
-                    <input
-                        type="text"
-                        name="searchTerm"
-                        placeholder="search..."
-                        value={searchTerm}
-                        onChange={e => setSearchParams(e.target.value)}
-                    />               
-            </form> */}
 
             <div className='pt-3 container-fluid'>
                 <div className="row m-5 ps-5">

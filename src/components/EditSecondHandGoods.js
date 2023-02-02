@@ -5,6 +5,20 @@ import { Form } from 'react-bootstrap';
 import { useNavigate, useParams } from "react-router-dom";
 import service from '../api/service';
 
+const divStyle = {
+    width: '45vw',
+    padding: '5em 7em 9em',
+    position: 'absolute',
+    left: '27%',
+    backgroundColor: 'rgba(239, 245, 250, 0.7)',
+    margin: '1em 3em '
+}
+const buttonStyle = {
+    border: "none",
+    background: 'linear-gradient(to left,#64b3f4, #c2e59c )',
+    padding: '0.5em 1em'
+}
+
 export default function EditSecondHandGoods(props) {
     const { secondHandGoodId } = useParams();
 
@@ -68,20 +82,7 @@ export default function EditSecondHandGoods(props) {
                 navigate(`/secondHandGoods/${secondHandGoodId}`)
                 props.setShowUpdateObjectForm(false)
             });
-    };
-    const divStyle = {
-        width: '45vw',
-        padding: '5em 7em 9em',
-        position: 'absolute',
-        left: '27%',
-        backgroundColor: 'rgba(239, 245, 250, 0.7)',
-        margin: '1em 3em '
-    }
-    const buttonStyle = {
-        border: "none",
-        background: 'linear-gradient(to left,#64b3f4, #c2e59c )',
-        padding: '0.5em 1em'
-    }
+    };    
 
     return (
         <div style={divStyle}>
@@ -97,7 +98,6 @@ export default function EditSecondHandGoods(props) {
                     />
                 </Form.Group>
 
-
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>DESCRIPTION</Form.Label>
                     <Form.Control
@@ -108,6 +108,7 @@ export default function EditSecondHandGoods(props) {
                         onChange={(event) => { setDescription(event.target.value) }}
                     />
                 </Form.Group>
+
                 <Form.Group controlId="formFileMultiple" className="mb-3">
                     <Form.Label>PICTURE</Form.Label>
                     <Form.Control type="file"
@@ -115,6 +116,7 @@ export default function EditSecondHandGoods(props) {
                         onChange={(e) => handleFileUpload(e)}
                     />
                 </Form.Group>
+                
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
 
                     <Form.Label>PRICE</Form.Label>

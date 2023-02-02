@@ -23,12 +23,12 @@ const textBoxStyle = {
     fontSize: '1.3rem',
     textAlign: 'justify',
     overflow: 'hidden',
-    textJustify: 'inter-word' 
+    textJustify: 'inter-word'
 }
-const pStyle = {     
+const pStyle = {
     paddingLeft: '2rem',
     height: '26rem',
-    overflowY: 'scroll' 
+    overflowY: 'scroll'
 }
 const formStyle = {
     display: 'flex',
@@ -67,7 +67,7 @@ export default function DiscoveryDetailsPart(props) {
 
             let newLikeArr = [...likerArr, user.name]
             const requestBody = { likerArr: newLikeArr };
-            
+
             const storedToken = localStorage.getItem('authToken');
             axios
                 .put(`${process.env.REACT_APP_API_URL}/api/discoveries/edit/${discoveryId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -82,7 +82,7 @@ export default function DiscoveryDetailsPart(props) {
             let newLikeArr = likerArr.filter((liker) => {
                 return liker !== user.name
             })
-            
+
             const requestBody = { likerArr: newLikeArr };
 
             const storedToken = localStorage.getItem('authToken');
@@ -105,7 +105,7 @@ export default function DiscoveryDetailsPart(props) {
             })
             .catch((err) => console.log(err));
     };
-    
+
     return (
         <div>
             <div>

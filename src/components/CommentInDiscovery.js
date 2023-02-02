@@ -49,8 +49,7 @@ export default function CommentInDiscovery(props) {
     const getCommentArr = () => {
         const storedToken = localStorage.getItem('authToken');
         axios.get(`${process.env.REACT_APP_API_URL}/api/discoveries/${discoveryId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then(res => {
-                console.log(res.data.comments)
+            .then(res => {               
                 setCommentsArr(res.data.comments)
             })
             .catch((error) => console.log("error in getting commentArr", error));
@@ -59,15 +58,13 @@ export default function CommentInDiscovery(props) {
     // eslint-disable-next-line
     useEffect(() => { getCommentArr() }, [discoveryId]);
 
-    const createNewComment = (newComment) => {
-        //console.log(commentsArr)
+    const createNewComment = (newComment) => {       
         let newCommentsArr = [...commentsArr, newComment]
         const requestBody = { comments: newCommentsArr };
         const storedToken = localStorage.getItem('authToken');
         axios
             .put(`${process.env.REACT_APP_API_URL}/api/discoveries/edit/${discoveryId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then((res) => {
-                //console.log("comment is created")
+            .then((res) => {                
                 getCommentArr();
             })
             .then(() => console.log('Updating...'))

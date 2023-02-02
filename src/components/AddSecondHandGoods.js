@@ -5,6 +5,22 @@ import Form from 'react-bootstrap/Form'
 import { useNavigate } from "react-router-dom";
 import service from '../api/service';
 import { AuthContext } from '../context/auth.context';
+
+const divStyle = {
+    width: '100vw',
+    background: 'linear-gradient(to right, #6190e8, #a7bfe8)',
+    minHeight: '92vh'
+}
+const divTwoStyle = {
+    padding: '5em 7em 9em',
+    position: 'absolute',
+    left: '27%',
+    backgroundColor: 'rgba(239, 245, 250, 0.7)',
+    margin: '5em 3em',
+    width: '45vw',
+    height:'78vh'
+}
+
 export default function AddSecondHandGoods(props) {
     const navigate = useNavigate();
     const [name, setName] = useState("");
@@ -75,22 +91,7 @@ export default function AddSecondHandGoods(props) {
 
         navigate("/secondHandGoods")
         props.setShowAddObjectForm(false)
-    }
-
-    const divStyle = {
-        width: '100vw',
-        background: 'linear-gradient(to right, #6190e8, #a7bfe8)',
-        minHeight: '92vh'
-    }
-    const divTwoStyle = {
-        padding: '5em 7em 9em',
-        position: 'absolute',
-        left: '27%',
-        backgroundColor: 'rgba(239, 245, 250, 0.7)',
-        margin: '5em 3em',
-        width: '45vw',
-        height:'78vh'
-    }
+    }   
 
     return (
         <div style={divStyle}>

@@ -3,40 +3,41 @@ import FrontpageImg2 from "../images/looking for something new.jpg"
 import FrontpageImg3 from "../images/starting-a-neighborhood-watch-scaled-1.jpg"
 import Carousel from 'react-bootstrap/Carousel';
 
-export default function ContentCardInHomePage() {
+const imgStyle = {
+  height: '95vh'
+}
+const carouselCaptionStyle = {
+  position: 'absolute',
+  bottom: '40%',
+  left: '3%',
+  color: '#f4c305',
+  width: '50%'
+}
+const hStyle = {
+  color: '#fa400f',
+  fontSize: '8em',
+  fontWeight: 'bold'
+}
+const captionStyle = {
+  position: 'absolute',
+  top: '8%',
+  left: '50%',
+  color: 'white'
+}
+const captionLastStyle = {
+  position: 'absolute',
+  top: '30%',
+  left: '5%',
+  color: '#64b3f4',
+  width: '40%'
+}
+const textBiggerStyle = {
+  fontSize: '8em',
+  fontWeight: 'bold'
+}
 
-  const imgStyle = {
-    height: '95vh'
-  }
-  const carouselCaptionStyle = {
-    position: 'absolute',
-    bottom: '40%',
-    left: '3%',
-    color: '#f4c305',
-    width: '50%'
-  }
-  const hStyle = {
-    color: '#fa400f',
-    fontSize: '8em',
-    fontWeight: 'bold'
-  }
-  const captionStyle = {
-    position: 'absolute',
-    top: '8%',
-    left: '50%',
-    color: 'white'
-  }
-  const captionLastStyle = {
-    position: 'absolute',
-    top: '30%',
-    left: '5%',
-    color: '#64b3f4',
-    width: '40%'
-  }
-  const textBiggerStyle = {
-    fontSize: '8em',
-    fontWeight: 'bold'
-  }
+export default function ContentCardInHomePage() {
+  
   return (
     <Carousel>
 

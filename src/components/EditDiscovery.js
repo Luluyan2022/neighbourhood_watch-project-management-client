@@ -4,6 +4,18 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from "react-router-dom";
 import service from '../api/service';
 
+const divStyle = {
+    width: '45vw',
+    padding: '5em 7em 9em',
+    position: 'absolute',
+    left: '27%',
+    backgroundColor: 'rgba(239, 245, 250, 0.7)',
+    margin: '5em 3em'
+}
+const updateButton = {
+    marginTop: '1em'
+}
+
 export default function EditDiscovery(props) {
     const { discoveryId } = useParams();
 
@@ -60,18 +72,7 @@ export default function EditDiscovery(props) {
                 props.setShowUpdateDiscoveryForm(false)
             });
     };
-
-    const divStyle = {
-        width: '45vw',
-        padding: '5em 7em 9em',
-        position: 'absolute',
-        left: '27%',
-        backgroundColor: 'rgba(239, 245, 250, 0.7)',
-        margin: '5em 3em'
-    }
-    const updateButton = {
-        marginTop: '1em'
-    }
+    
     return (
         <div style={divStyle}>
             <Form onSubmit={handleSubmit}>

@@ -4,7 +4,28 @@ import { Button } from 'react-bootstrap';
 import AddDiscovery from '../components/AddDiscovery';
 import DiscoveriesList from '../components/DiscoveriesList';
 import backButton from "../images/left-arrow0.png"
+
+const backButtonStyle = {
+    position: 'absolute',
+    top: '10vh',
+    left: '7vw',
+    fontSize: '1.5em',
+    textDecoration: 'none',
+    color: "black",
+    border: 'none',
+    background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
+}
+const addDiscButtonStyle = {
+    position: 'absolute',
+    top: '4em',
+    left: '47%'
+}
+const imgStyle = {
+    width: '1em'
+}
+
 export default function DiscoveriesListPage() {
+
     const [showAddDiscoveryForm, setShowAddDiscoveryForm] = useState(false);
     const [discoveries, setDiscoveries] = useState(null);
 
@@ -17,26 +38,7 @@ export default function DiscoveriesListPage() {
             })
     }
 
-    useEffect(() => { getDiscoveriesFromAPI() }, []);
-
-    const backButtonStyle = {
-        position: 'absolute',
-        top: '10vh',
-        left: '7vw',
-        fontSize: '1.5em',
-        textDecoration: 'none',
-        color: "black",
-        border: 'none',
-        background: 'linear-gradient(to right, #6190e8, #a7bfe8)'
-    }
-    const addDiscButtonStyle = {
-        position: 'absolute',
-        top: '4em',
-        left: '47%'
-    }
-    const imgStyle = {
-        width: '1em'
-    }
+    useEffect(() => { getDiscoveriesFromAPI() }, []);    
 
     return (
 

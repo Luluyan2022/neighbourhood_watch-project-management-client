@@ -28,13 +28,13 @@ const imgStyle = {
 }
 const backButtonStyle = {
     position: 'absolute',
-    left:950,
-    top:-17
+    left:1570,
+    bottom:-55
 }
 const deleteButtonStyle = {
     position:'absolute',
-    left:800,
-    bottom:-20,
+    left:1208,
+    bottom:-30,
     width:'8em'
 }
 const descriptionStyle = {
@@ -63,7 +63,7 @@ export default function SecondHandsGoodsDetails(props) {
             <div style={divStyle}>
                 {props.object?.author.name === user.name 
                    && <Button onClick={deleteObject} style={deleteButtonStyle}>
-                          Delete Project
+                          Delete Object
                     </Button>}
                 <Link to="/secondHandGoods">
                     <Button className="mx-3" style={backButtonStyle}>Back</Button>

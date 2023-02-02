@@ -4,32 +4,34 @@ import { AuthContext } from "../context/auth.context"
 import Nav from 'react-bootstrap/Nav';
 import { Button } from "react-bootstrap";
 
-export default function Navbar() {
-    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+const navStyle = {
+    height: '3em',
+    backgroundColor: '#f0f5fb'
+}
+const imgStyle = {
+    width: '2em'
+}
+const navLinkStyle = {
+    fontWeight: 'bold',
+    color: '#828484'
+}
+const userNameStyle = {
+    paddingTop: '0.2em',
+    fontFamily: 'cursive',
+    position: 'absolute',
+    right: '15em'
+}
+const buttonStyle = {
+    position: 'absolute',
+    right: '8em',
+    paddingTop: '0.1em',
+    height: '2em'
+}
 
-    const navStyle = {
-        height: '3em',
-        backgroundColor: '#f0f5fb'
-    }
-    const imgStyle = {
-        width: '2em'
-    }
-    const navLinkStyle = {
-        fontWeight: 'bold',
-        color: '#828484'
-    }
-    const userNameStyle = {
-        paddingTop: '0.2em',
-        fontFamily: 'cursive',
-        position: 'absolute',
-        right: '15em'
-    }
-    const buttonStyle = {
-        position: 'absolute',
-        right: '8em',
-        paddingTop: '0.1em',
-        height: '2em'
-    }
+export default function Navbar() {
+
+    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    
     return (
         <Nav
             className="justify-content-start"
