@@ -31,7 +31,7 @@ export default function DiscoveryDetailsPart(props) {
 
             let newLikeArr = [...likerArr, user.name]
             const requestBody = { likerArr: newLikeArr };
-
+            
             const storedToken = localStorage.getItem('authToken');
             axios
                 .put(`${process.env.REACT_APP_API_URL}/api/discoveries/edit/${discoveryId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -42,9 +42,25 @@ export default function DiscoveryDetailsPart(props) {
                 .catch((error) => console.log("error in increasing likerNumber", error));
 
         } else {
-            return likerArr
+
+            let newLikeArr = likerArr.filter((liker) => {
+                return liker !== user.name
+            })
+            
+            const requestBody = { likerArr: newLikeArr };
+
+            const storedToken = localStorage.getItem('authToken');
+            axios
+                .put(`${process.env.REACT_APP_API_URL}/api/discoveries/edit/${discoveryId}`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
+                .then((res) => {
+                    setLikerArr(res.data.likerArr)
+
+                })
+                .catch((error) => console.log("error in increasing likerNumber", error));
         }
     }
+
+
 
     const deleteDiscovery = () => {
         const storedToken = localStorage.getItem("authToken");
