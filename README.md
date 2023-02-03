@@ -36,7 +36,7 @@ You may also see any lint errors in the console.
 
 ### `npm start`
 
-#### You can begin now \
+#### You can begin now 
 
 ## [APP Demo](https://community-life.netlify.app/)
 
