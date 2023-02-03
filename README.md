@@ -18,7 +18,7 @@ You may also see any lint errors in the console.
 
 ### `npm install`
 
-#### To launch the app you need to make sure you have already installed all the dependencies\
+#### To launch the app you need to make sure you have already installed all the dependencies
      
     "axios": "^1.2.3",
     "bootstrap": "^5.2.3",
@@ -30,9 +30,9 @@ You may also see any lint errors in the console.
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
 
-#### Make sure you have the following environment variable:\
+#### Make sure you have the following environment variable:
 
-REACT_APP_API_URL=http://localhost:5005
+`REACT_APP_API_URL=http://localhost:5005`
 
 ### `npm start`
 
